@@ -1,0 +1,216 @@
+/* ==========================================================
+   MiniGolf — stylesheet (simplified two-course version)
+   ========================================================== */
+
+:root {
+  --paper: #EEF1EC;
+  --paper-raised: #F8F9F6;
+  --ink: #172520;
+  --ink-soft: #45564D;
+  --line: #C9D0C6;
+  --turf: #2E6B3E;
+  --turf-dark: #1F4C2C;
+  --red: #A93226;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-body: "Work Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --wrap: 1160px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2 { font-family: var(--font-display); color: var(--ink); line-height: 1.1; margin: 0 0 0.5em; }
+h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; }
+h2 { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 700; }
+p { margin: 0 0 1em; color: var(--ink-soft); }
+a { color: var(--turf-dark); }
+.mono { font-family: var(--font-mono); }
+code { font-family: var(--font-mono); background: var(--paper-raised); padding: 0.1em 0.4em; border: 1px solid var(--line); font-size: 0.9em; }
+
+.wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 24px; }
+
+.eyebrow-line {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--turf-dark);
+  margin: 0 0 0.6em;
+}
+
+/* ---------- buttons ---------- */
+.btn {
+  display: inline-block;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 0.75em 1.4em;
+  border: 1.5px solid var(--ink);
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  color: var(--ink);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+.btn-primary { background: var(--turf); border-color: var(--turf); color: #fff; }
+.btn-primary:hover { background: var(--turf-dark); border-color: var(--turf-dark); }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+.btn:active { transform: translateY(1px); }
+
+/* ---------- header ---------- */
+.site-header { position: sticky; top: 0; z-index: 30; background: var(--paper); border-bottom: 1.5px solid var(--ink); }
+.header-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 68px; }
+.logo { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+.logo-mark { color: var(--red); display: inline-flex; }
+.main-nav { display: flex; gap: 28px; }
+.main-nav a { text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.95rem; padding: 4px 2px; border-bottom: 2px solid transparent; }
+.main-nav a:hover { border-bottom-color: var(--red); }
+
+/* ---------- hero ---------- */
+.hero { padding: 72px 0 56px; }
+.hero-inner { max-width: 720px; }
+.hero-sub { font-size: 1.05rem; max-width: 60ch; }
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 24px; }
+
+/* ---------- collection sections ---------- */
+.collection { padding: 72px 0; border-top: 1.5px solid var(--ink); }
+.collection.alt { background: var(--paper-raised); }
+.collection-inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 56px;
+  align-items: center;
+}
+.collection-inner.reverse { grid-template-columns: 1.15fr 0.85fr; }
+.collection-inner.reverse .collection-info { order: 2; }
+.collection-inner.reverse .collection-viewer { order: 1; }
+
+.hole-list {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px 16px;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.price-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.price-label { display: block; font-size: 0.8rem; color: var(--ink-soft); }
+.price-value { display: block; font-family: var(--font-mono); font-weight: 600; font-size: 1.6rem; color: var(--ink); }
+
+.collection-viewer { }
+.viewer-tabs { display: flex; gap: 10px; margin-bottom: 12px; }
+.view-tab {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  background: none;
+  border: 1.5px solid var(--ink);
+  padding: 0.5em 1em;
+  cursor: pointer;
+  color: var(--ink);
+}
+.view-tab.active { background: var(--ink); color: var(--paper); }
+.viewer-frame {
+  position: relative;
+  border: 1.5px solid var(--ink);
+  background: #fff;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.viewer-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  pointer-events: none;
+  cursor: zoom-in;
+  transition: opacity 0.15s ease;
+}
+.viewer-img.active { opacity: 1; pointer-events: auto; }
+.viewer-hint { font-size: 0.8rem; margin: 10px 0 0; color: var(--ink-soft); }
+
+/* ---------- contact ---------- */
+.contact { padding: 72px 0 96px; border-top: 1.5px solid var(--ink); }
+.contact-inner { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 56px; }
+.quote-form { display: flex; flex-direction: column; gap: 16px; background: var(--paper-raised); border: 1.5px solid var(--ink); padding: 28px; }
+.quote-form label { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; font-weight: 600; color: var(--ink); }
+.quote-form input, .quote-form textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.7em 0.8em;
+  border: 1.5px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+.quote-form input:focus, .quote-form textarea:focus { outline: 2px solid var(--turf); outline-offset: 1px; border-color: var(--turf); }
+.course-choice { border: 1.5px solid var(--line); padding: 12px 14px; display: flex; gap: 24px; }
+.course-choice legend { font-size: 0.78rem; font-family: var(--font-mono); color: var(--ink-soft); padding: 0 4px; }
+.checkbox { flex-direction: row !important; align-items: center; gap: 8px !important; font-weight: 500 !important; }
+.checkbox input { width: 16px; height: 16px; }
+
+/* ---------- footer ---------- */
+.site-footer { border-top: 1.5px solid var(--ink); padding-top: 40px; background: var(--paper-raised); }
+.footer-inner { display: flex; justify-content: space-between; gap: 32px; flex-wrap: wrap; padding-bottom: 32px; }
+.footer-inner p { font-size: 0.9rem; max-width: 32ch; }
+.footer-cols { display: flex; gap: 24px; align-items: flex-start; }
+.footer-cols a { text-decoration: none; color: var(--ink-soft); font-size: 0.9rem; }
+.footer-bottom { border-top: 1px solid var(--line); padding: 18px 24px; font-size: 0.8rem; color: var(--ink-soft); }
+.footer-bottom p { margin: 0; }
+
+/* ---------- lightbox ---------- */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(23, 37, 32, 0.85);
+  padding: 24px;
+}
+.lightbox.show { display: flex; }
+.lightbox img { max-width: 100%; max-height: 100%; border: 1px solid var(--line); }
+#lightboxClose { position: fixed; top: 20px; right: 28px; background: none; border: none; font-size: 2.2rem; cursor: pointer; color: #fff; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .main-nav { display: flex; gap: 16px; }
+  .collection-inner, .collection-inner.reverse { grid-template-columns: 1fr; }
+  .collection-inner.reverse .collection-info,
+  .collection-inner.reverse .collection-viewer { order: initial; }
+  .hole-list { grid-template-columns: 1fr 1fr; }
+  .contact-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .header-inner { height: auto; padding: 14px 24px; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .price-row { flex-direction: column; align-items: flex-start; }
+  .course-choice { flex-direction: column; gap: 10px; }
+}
