@@ -192,33 +192,49 @@
     Send a message
   </button>
 
+<form id="quoteForm"
+      class="quote-form"
+      action="https://formspree.io/f/mqpaayvl"
+      method="POST">
+
+  <label>
+    Name
+    <input type="text" name="name" required>
+  </label>
+
+  <label>
+    Email
+    <input type="email" name="email" required>
+  </label>
+
+  <label>
+    Interested in
+    <select name="course" id="courseSelect" required>
+      <option value="" disabled selected>Select an option</option>
+      <option value="Mini Wood — 9 holes">Mini Wood — 9 holes</option>
+      <option value="Mini Wood — 12 holes">Mini Wood — 12 holes</option>
+      <option value="Mini Wood — 18 holes">Mini Wood — 18 holes</option>
+      <option value="Wood Park — 9 holes">Wood Park — 9 holes</option>
+      <option value="Wood Park — 12 holes">Wood Park — 12 holes</option>
+      <option value="Wood Park — 18 holes">Wood Park — 18 holes</option>
+    </select>
+  </label>
+
+  <label>
+    Message
+    <textarea
+      name="message"
+      rows="4"
+      placeholder="Tell us about your site and timeline."></textarea>
+  </label>
+
+  <input type="hidden" name="subject" value="New MiniGolf enquiry">
+
+  <button type="submit" class="btn btn-primary">
+    Send a message
+  </button>
+
 </form>
-        <label>
-          Name
-          <input type="text" name="name" required>
-        </label>
-        <label>
-          Email
-          <input type="email" name="email" required>
-        </label>
-        <label>
-          Interested in
-          <select name="course" id="courseSelect" required>
-            <option value="" disabled selected>Select an option</option>
-            <option value="Mini Wood — 9 holes">Mini Wood — 9 holes</option>
-            <option value="Mini Wood — 12 holes">Mini Wood — 12 holes</option>
-            <option value="Mini Wood — 18 holes">Mini Wood — 18 holes</option>
-            <option value="Wood Park — 9 holes">Wood Park — 9 holes</option>
-            <option value="Wood Park — 12 holes">Wood Park — 12 holes</option>
-            <option value="Wood Park — 18 holes">Wood Park — 18 holes</option>
-          </select>
-        </label>
-        <label>
-          Message
-          <textarea name="message" rows="4" placeholder="Tell us about your site and timeline."></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Send a message</button>
-      </form>
     </div>
   </section>
 
