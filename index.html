@@ -15,19 +15,15 @@
 <!-- ============ HEADER ============ -->
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="#top" class="logo">
-      <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 32 32" width="28" height="28">
-          <circle cx="16" cy="16" r="14" fill="none" stroke="currentColor" stroke-width="2"/>
-          <circle cx="16" cy="16" r="3" fill="currentColor"/>
-        </svg>
-      </span>
-      MiniGolf
-    </a>
-    <nav class="main-nav" aria-label="Primary">
+    <nav class="nav-side nav-left" aria-label="Primary">
       <a href="#mini-wood">Mini Wood</a>
       <a href="#wood-park">Wood Park</a>
-      <a href="#contact">Get a quote</a>
+    </nav>
+    <a href="#top" class="logo">
+      <img src="images/logo.png" alt="MiniGolf" class="logo-img">
+    </a>
+    <nav class="nav-side nav-right" aria-label="Secondary">
+      <a href="#contact">Contact us</a>
     </nav>
   </div>
 </header>
@@ -61,12 +57,22 @@
           <li>13. Three Jumpers</li><li>14. Long Ahead</li><li>15. A Fall Under</li>
           <li>16. Two Side</li><li>17. Roller</li><li>18. Eight</li>
         </ul>
-        <div class="price-row">
-          <div>
-            <span class="price-label">Full 18-hole set</span>
-            <span class="price-value" id="price-mini-wood">&euro;14,900</span>
+        <div class="tier-grid">
+          <div class="tier-card">
+            <span class="tier-label">9-hole set</span>
+            <span class="tier-price" id="price-mini-wood-9">&euro;9,500</span>
+            <button class="btn btn-primary quote-btn" data-value="Mini Wood — 9 holes">Contact us</button>
           </div>
-          <button class="btn btn-primary quote-btn" data-course="Mini Wood">Get a quote</button>
+          <div class="tier-card">
+            <span class="tier-label">12-hole set</span>
+            <span class="tier-price" id="price-mini-wood-12">&euro;11,500</span>
+            <button class="btn btn-primary quote-btn" data-value="Mini Wood — 12 holes">Contact us</button>
+          </div>
+          <div class="tier-card">
+            <span class="tier-label">18-hole set</span>
+            <span class="tier-price" id="price-mini-wood-18">&euro;14,500</span>
+            <button class="btn btn-primary quote-btn" data-value="Mini Wood — 18 holes">Contact us</button>
+          </div>
         </div>
       </div>
       <div class="collection-viewer">
@@ -108,12 +114,22 @@
           <li>13. Z-Turn</li><li>14. Zic-Zac</li><li>15. Vulcan</li>
           <li>16. 360</li><li>17. Bridge</li><li>18. Well</li>
         </ul>
-        <div class="price-row">
-          <div>
-            <span class="price-label">Full 18-hole set</span>
-            <span class="price-value" id="price-wood-park">&euro;26,900</span>
+        <div class="tier-grid">
+          <div class="tier-card">
+            <span class="tier-label">9-hole set</span>
+            <span class="tier-price" id="price-wood-park-9">&euro;14,500</span>
+            <button class="btn btn-primary quote-btn" data-value="Wood Park — 9 holes">Contact us</button>
           </div>
-          <button class="btn btn-primary quote-btn" data-course="Wood Park">Get a quote</button>
+          <div class="tier-card">
+            <span class="tier-label">12-hole set</span>
+            <span class="tier-price" id="price-wood-park-12">&euro;19,500</span>
+            <button class="btn btn-primary quote-btn" data-value="Wood Park — 12 holes">Contact us</button>
+          </div>
+          <div class="tier-card">
+            <span class="tier-label">18-hole set</span>
+            <span class="tier-price" id="price-wood-park-18">&euro;24,500</span>
+            <button class="btn btn-primary quote-btn" data-value="Wood Park — 18 holes">Contact us</button>
+          </div>
         </div>
       </div>
     </div>
@@ -125,7 +141,7 @@
       <div>
         <p class="eyebrow-line">Get in touch</p>
         <h2>Request a quote</h2>
-        <p>Tell us which system you're interested in and a little about your site. Submitting opens your email client addressed to <span class="mono">orders@minigolf.example</span> — update this in <code>js/script.js</code>.</p>
+        <p>Tell us which system you're interested in and a little about your site. Submitting opens your email client addressed to <span class="mono">ryan.minigolf@gmail.com</span> — update this in <code>js/script.js</code>.</p>
       </div>
       <form id="quoteForm" class="quote-form">
         <label>
@@ -136,16 +152,23 @@
           Email
           <input type="email" name="email" required>
         </label>
-        <fieldset class="course-choice">
-          <legend>Interested in</legend>
-          <label class="checkbox"><input type="checkbox" name="course" value="Mini Wood" id="chk-mini-wood"> Mini Wood</label>
-          <label class="checkbox"><input type="checkbox" name="course" value="Wood Park" id="chk-wood-park"> Wood Park</label>
-        </fieldset>
+        <label>
+          Interested in
+          <select name="course" id="courseSelect" required>
+            <option value="" disabled selected>Select an option</option>
+            <option value="Mini Wood — 9 holes">Mini Wood — 9 holes</option>
+            <option value="Mini Wood — 12 holes">Mini Wood — 12 holes</option>
+            <option value="Mini Wood — 18 holes">Mini Wood — 18 holes</option>
+            <option value="Wood Park — 9 holes">Wood Park — 9 holes</option>
+            <option value="Wood Park — 12 holes">Wood Park — 12 holes</option>
+            <option value="Wood Park — 18 holes">Wood Park — 18 holes</option>
+          </select>
+        </label>
         <label>
           Message
           <textarea name="message" rows="4" placeholder="Tell us about your site and timeline."></textarea>
         </label>
-        <button type="submit" class="btn btn-primary">Send quote request</button>
+        <button type="submit" class="btn btn-primary">Send a message</button>
       </form>
     </div>
   </section>
@@ -162,7 +185,7 @@
     <div class="footer-cols">
       <a href="#mini-wood">Mini Wood</a>
       <a href="#wood-park">Wood Park</a>
-      <a href="#contact">Get a quote</a>
+      <a href="#contact">Contact us</a>
     </div>
   </div>
   <div class="wrap footer-bottom">

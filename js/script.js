@@ -6,8 +6,12 @@
 // ---------------------------------------------------------
 // EDIT PRICES HERE
 // ---------------------------------------------------------
-document.getElementById("price-mini-wood").textContent = "\u20AC14,900";
-document.getElementById("price-wood-park").textContent = "\u20AC26,900";
+document.getElementById("price-mini-wood-9").textContent = "\u20AC9,500";
+document.getElementById("price-mini-wood-12").textContent = "\u20AC11,500";
+document.getElementById("price-mini-wood-18").textContent = "\u20AC14,500";
+document.getElementById("price-wood-park-9").textContent = "\u20AC14,500";
+document.getElementById("price-wood-park-12").textContent = "\u20AC19,500";
+document.getElementById("price-wood-park-18").textContent = "\u20AC24,500";
 
 // ---------------------------------------------------------
 // Plan / 3D view tabs (works independently per section)
@@ -48,20 +52,20 @@ lightbox.addEventListener("click", (e) => { if (e.target === lightbox) closeLigh
 document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeLightbox(); });
 
 // ---------------------------------------------------------
-// "Get a quote" buttons — scroll to the form and pre-check the course
+// "Contact us" buttons — pre-select the matching option in the
+// dropdown and scroll down to the contact form
 // ---------------------------------------------------------
 document.querySelectorAll(".quote-btn").forEach((btn) => {
   btn.addEventListener("click", () => {
-    const course = btn.dataset.course;
-    if (course === "Mini Wood") document.getElementById("chk-mini-wood").checked = true;
-    if (course === "Wood Park") document.getElementById("chk-wood-park").checked = true;
+    document.getElementById("courseSelect").value = btn.dataset.value;
+    document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
   });
 });
 
 // ---------------------------------------------------------
-// Quote form — builds a mailto: with the selected course(s)
+// Contact form — builds a mailto: with the selected option
 // ---------------------------------------------------------
-const QUOTE_EMAIL = "orders@minigolf.example"; // <-- change this to your real inbox
+const QUOTE_EMAIL = "ryan.minigolf@gmail.com"; // <-- change this to your real inbox
 
 document.getElementById("quoteForm").addEventListener("submit", (e) => {
   e.preventDefault();
@@ -69,17 +73,17 @@ document.getElementById("quoteForm").addEventListener("submit", (e) => {
   const name = form.name.value.trim();
   const email = form.email.value.trim();
   const message = form.message.value.trim();
-  const courses = Array.from(form.querySelectorAll('input[name="course"]:checked')).map((c) => c.value);
+  const course = form.course.value || "(not specified)";
 
   const lines = [
     `Name: ${name}`,
     `Email: ${email}`,
-    `Interested in: ${courses.length ? courses.join(", ") : "(not specified)"}`,
+    `Interested in: ${course}`,
     "",
     message ? `Message:\n${message}` : "",
   ].join("\n");
 
-  const subject = encodeURIComponent("Quote request — MiniGolf");
+  const subject = encodeURIComponent("Enquiry — MiniGolf");
   const body = encodeURIComponent(lines);
   window.location.href = `mailto:${QUOTE_EMAIL}?subject=${subject}&body=${body}`;
 });
