@@ -82,7 +82,7 @@ code { font-family: var(--font-mono); background: var(--paper-raised); padding: 
   padding: 14px 24px;
 }
 .logo { justify-self: center; display: flex; align-items: center; }
-.logo-img { height: 34px; width: auto; display: contents; }
+.logo-img { height: 34px; width: auto; display: block; }
 .nav-side { display: flex; gap: 28px; }
 .nav-left { justify-self: start; }
 .nav-right { justify-self: end; }
