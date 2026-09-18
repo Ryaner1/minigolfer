@@ -141,7 +141,9 @@ code { font-family: var(--font-mono); background: var(--paper-raised); padding: 
 .tier-price { font-family: var(--font-mono); font-weight: 600; font-size: 1.25rem; color: var(--ink); }
 .tier-card .btn { width: 100%; text-align: center; font-size: 0.82rem; padding: 0.6em 0.6em; }
 
-.collection-viewer { }
+.collection-viewer {  display: flex;
+  flex-direction: column;  gap: 12px;
+ }
 .viewer-tabs { display: flex; gap: 10px; margin-bottom: 12px; }
 .view-tab {
   font-family: var(--font-mono);
