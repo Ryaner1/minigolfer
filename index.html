@@ -14,7 +14,92 @@
 </head>
 
 <body>
+<!-- =========================================================
+     TREE ARTWORK DEFINITION
+     Used by the four decorative corners of each course
+     ========================================================= -->
 
+<svg
+  width="0"
+  height="0"
+  style="position:absolute;overflow:hidden"
+  aria-hidden="true"
+>
+  <defs>
+
+    <symbol id="course-tree-scene" viewBox="0 0 240 160">
+
+      <!-- Soft ground -->
+      <path
+        d="M0 132
+           C38 125 63 128 91 138
+           C124 149 160 151 190 143
+           C211 138 226 132 240 127
+           L240 160
+           L0 160 Z"
+        fill="#8FAF91"
+      />
+
+      <!-- Large tree -->
+      <g transform="translate(22 20)">
+        <!-- trunk -->
+        <rect
+          x="23"
+          y="62"
+          width="9"
+          height="48"
+          rx="3"
+          fill="#687E68"
+        />
+
+        <!-- crown -->
+        <circle cx="28" cy="52" r="25" fill="#789779"/>
+        <circle cx="13" cy="62" r="18" fill="#789779"/>
+        <circle cx="43" cy="62" r="18" fill="#789779"/>
+        <circle cx="28" cy="35" r="17" fill="#789779"/>
+        <circle cx="28" cy="65" r="18" fill="#789779"/>
+      </g>
+
+      <!-- Medium tree -->
+      <g transform="translate(91 55) scale(.72)">
+        <rect
+          x="23"
+          y="62"
+          width="9"
+          height="48"
+          rx="3"
+          fill="#687E68"
+        />
+
+        <circle cx="28" cy="52" r="25" fill="#86A486"/>
+        <circle cx="13" cy="62" r="18" fill="#86A486"/>
+        <circle cx="43" cy="62" r="18" fill="#86A486"/>
+        <circle cx="28" cy="35" r="17" fill="#86A486"/>
+        <circle cx="28" cy="65" r="18" fill="#86A486"/>
+      </g>
+
+      <!-- Small tree -->
+      <g transform="translate(138 82) scale(.5)">
+        <rect
+          x="23"
+          y="62"
+          width="9"
+          height="48"
+          rx="3"
+          fill="#687E68"
+        />
+
+        <circle cx="28" cy="52" r="25" fill="#8DA98D"/>
+        <circle cx="13" cy="62" r="18" fill="#8DA98D"/>
+        <circle cx="43" cy="62" r="18" fill="#8DA98D"/>
+        <circle cx="28" cy="35" r="17" fill="#8DA98D"/>
+        <circle cx="28" cy="65" r="18" fill="#8DA98D"/>
+      </g>
+
+    </symbol>
+
+  </defs>
+</svg>
   <!-- ============ HEADER ============ -->
   <header class="site-header">
     <div class="wrap header-inner">
@@ -55,6 +140,34 @@
 
     <!-- ============ MINI WOOD ============ -->
     <section class="collection" id="mini-wood">
+          <!-- MINI WOOD CORNER TREES -->
+    <div class="course-trees" aria-hidden="true">
+
+      <div class="course-tree top-left">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+      <div class="course-tree top-right">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+      <div class="course-tree bottom-left">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+      <div class="course-tree bottom-right">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+    </div>
       <div class="wrap collection-inner">
 
         <div class="collection-info">
@@ -198,6 +311,34 @@
 
     <!-- ============ WOOD PARK ============ -->
     <section class="collection alt" id="wood-park">
+          <!-- WOOD PARK CORNER TREES -->
+    <div class="course-trees" aria-hidden="true">
+
+      <div class="course-tree top-left">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+      <div class="course-tree top-right">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+      <div class="course-tree bottom-left">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+      <div class="course-tree bottom-right">
+        <svg viewBox="0 0 240 160">
+          <use href="#course-tree-scene"></use>
+        </svg>
+      </div>
+
+    </div>
       <div class="wrap collection-inner reverse">
 
         <div class="collection-viewer">

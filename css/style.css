@@ -677,3 +677,92 @@ code {
     margin-top: 42px;
   }
 }
+/* =========================================================
+   COURSE CORNER TREES
+   Decorative trees for Mini Wood + Wood Park
+   ========================================================= */
+
+.collection {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Keep the actual course content above the decoration */
+.collection-inner,
+.collection > .wrap:not(.collection-inner) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Tree artwork */
+.course-trees {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Individual corner */
+.course-tree {
+  position: absolute;
+  width: 210px;
+  height: 150px;
+  opacity: 0.42;
+}
+
+.course-tree svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Top left */
+.course-tree.top-left {
+  top: 0;
+  left: 0;
+}
+
+/* Top right */
+.course-tree.top-right {
+  top: 0;
+  right: 0;
+  transform: scaleX(-1);
+}
+
+/* Bottom left */
+.course-tree.bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: scaleY(-1);
+}
+
+/* Bottom right */
+.course-tree.bottom-right {
+  bottom: 0;
+  right: 0;
+  transform: scale(-1, -1);
+}
+
+/* Make sure the feature panel stays above the trees */
+.course-features {
+  position: relative;
+  z-index: 3;
+}
+
+/* Smaller trees on tablets */
+@media (max-width: 900px) {
+  .course-tree {
+    width: 150px;
+    height: 110px;
+    opacity: 0.32;
+  }
+}
+
+/* Hide the corner artwork on very small screens */
+@media (max-width: 560px) {
+  .course-tree {
+    width: 110px;
+    height: 85px;
+    opacity: 0.22;
+  }
+}
