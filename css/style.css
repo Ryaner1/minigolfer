@@ -802,17 +802,6 @@ code {
   height: 100%;
 }
 
-/* TOP TREES */
-.course-tree.top-left {
-  top: 0;
-  left: 0;
-}
-
-.course-tree.top-right {
-  top: 0;
-  right: 0;
-}
-
 /* BOTTOM TREES
    Keep the artwork upright and move it slightly
    upward so the trees grow from the bottom edge. */
