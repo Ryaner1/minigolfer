@@ -218,7 +218,7 @@ code {
       rgba(255, 255, 255, 0.60) 64%,
       rgba(255, 255, 255, 0.10) 100%
     ),
-    url("../images/minigolf-banner.png");
+    url("../images/Banner.png");
 
   background-size: cover;
   background-position: center;
