@@ -840,3 +840,39 @@ code {
     bottom: -10px;
   }
 }
+/* ================================
+   MINI GOLF SCROLLBAR
+   ================================ */
+
+/* The scrollbar track */
+::-webkit-scrollbar {
+  width: 18px;
+}
+
+/* The track behind the golf ball */
+::-webkit-scrollbar-track {
+  background: #dcebdc;
+  border-left: 1px solid #c5d8c5;
+}
+
+/* The golf-ball scrollbar handle */
+::-webkit-scrollbar-thumb {
+  background-color: #ffffff;
+  border-radius: 50px;
+  border: 3px solid #4f8a5b;
+
+  /* Golf ball dimples */
+  background-image:
+    radial-gradient(circle at 30% 30%, #d6d6d6 1px, transparent 2px),
+    radial-gradient(circle at 70% 40%, #d6d6d6 1px, transparent 2px),
+    radial-gradient(circle at 40% 70%, #d6d6d6 1px, transparent 2px),
+    radial-gradient(circle at 75% 75%, #d6d6d6 1px, transparent 2px),
+    radial-gradient(circle at 55% 20%, #d6d6d6 1px, transparent 2px);
+
+  background-size: 10px 10px;
+}
+
+/* Slightly darker green when you hover over the golf ball */
+::-webkit-scrollbar-thumb:hover {
+  border-color: #376c43;
+}
