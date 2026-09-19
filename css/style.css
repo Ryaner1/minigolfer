@@ -681,20 +681,21 @@ code {
    COURSE CORNER TREES
    Decorative trees for Mini Wood + Wood Park
    ========================================================= */
+/* =========================================================
+   COURSE CORNER TREES
+   ========================================================= */
 
 .collection {
   position: relative;
   overflow: hidden;
 }
 
-/* Keep the actual course content above the decoration */
 .collection-inner,
 .collection > .wrap:not(.collection-inner) {
   position: relative;
   z-index: 2;
 }
 
-/* Tree artwork */
 .course-trees {
   position: absolute;
   inset: 0;
@@ -702,12 +703,11 @@ code {
   z-index: 1;
 }
 
-/* Individual corner */
 .course-tree {
   position: absolute;
   width: 210px;
   height: 150px;
-  opacity: 0.42;
+  opacity: 0.38;
 }
 
 .course-tree svg {
@@ -716,50 +716,63 @@ code {
   height: 100%;
 }
 
-/* Top left */
+/* TOP LEFT */
 .course-tree.top-left {
   top: 0;
   left: 0;
 }
 
-/* Top right */
+/* TOP RIGHT */
 .course-tree.top-right {
   top: 0;
   right: 0;
-  transform: scaleX(-1);
 }
 
-/* Bottom left */
+/* BOTTOM LEFT */
 .course-tree.bottom-left {
   bottom: 0;
   left: 0;
 }
 
+/* BOTTOM RIGHT */
 .course-tree.bottom-right {
   bottom: 0;
   right: 0;
-  transform: scaleX(-1);
 }
-/* Make sure the feature panel stays above the trees */
+
+/* Keep the information panel above the decoration */
 .course-features {
   position: relative;
   z-index: 3;
 }
 
-/* Smaller trees on tablets */
 @media (max-width: 900px) {
   .course-tree {
     width: 150px;
     height: 110px;
-    opacity: 0.32;
+    opacity: 0.30;
   }
 }
 
-/* Hide the corner artwork on very small screens */
 @media (max-width: 560px) {
   .course-tree {
-    width: 110px;
-    height: 85px;
-    opacity: 0.22;
+    width: 100px;
+    height: 75px;
+    opacity: 0.20;
   }
+}
+/* =========================================================
+   FINAL TREE ORIENTATION FIX
+   ========================================================= */
+
+.course-tree.top-left,
+.course-tree.top-right,
+.course-tree.bottom-left,
+.course-tree.bottom-right {
+  transform: none !important;
+}
+
+/* Keep every tree upright */
+.course-tree svg {
+  transform: none !important;
 }
