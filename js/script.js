@@ -106,3 +106,33 @@ document.querySelectorAll(".quote-btn").forEach((btn) => {
 // ---------------------------------------------------------
 document.getElementById("year").textContent =
   new Date().getFullYear();
+  /* =========================================================
+   MINI GOLF SCROLLBAR
+   ========================================================= */
+
+const golfBall = document.querySelector(".golf-ball");
+const golfTrack = document.querySelector(".golf-scroll-track");
+
+function moveGolfBall() {
+  if (!golfBall || !golfTrack) return;
+
+  const scrollTop = window.scrollY;
+  const documentHeight = document.documentElement.scrollHeight;
+  const windowHeight = window.innerHeight;
+
+  const maxScroll = documentHeight - windowHeight;
+  const trackHeight = golfTrack.clientHeight;
+  const ballHeight = golfBall.offsetHeight;
+
+  if (maxScroll <= 0) return;
+
+  const scrollProgress = scrollTop / maxScroll;
+  const maxBallMovement = trackHeight - ballHeight;
+
+  golfBall.style.top = `${scrollProgress * maxBallMovement}px`;
+}
+
+window.addEventListener("scroll", moveGolfBall);
+window.addEventListener("resize", moveGolfBall);
+
+moveGolfBall();
