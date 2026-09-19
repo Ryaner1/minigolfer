@@ -733,16 +733,13 @@ code {
 .course-tree.bottom-left {
   bottom: 0;
   left: 0;
-  transform: scaleY(-1);
 }
 
-/* Bottom right */
 .course-tree.bottom-right {
   bottom: 0;
   right: 0;
-  transform: scale(-1, -1);
+  transform: scaleX(-1);
 }
-
 /* Make sure the feature panel stays above the trees */
 .course-features {
   position: relative;
