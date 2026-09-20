@@ -120,11 +120,13 @@ const golfBall = document.querySelector(".golf-ball");
 const golfTrack = document.querySelector(".golf-scroll-track");
 
 let draggingGolfBall = false;
-let dragOffset = 0;
+let dragStartY = 0;
+let dragStartScroll = 0;
+let dragStartBallTop = 0;
 
 
 /* ---------------------------------------------------------
-   Move golf ball to match page scroll position
+   Update golf ball position from normal page scrolling
    --------------------------------------------------------- */
 
 function moveGolfBall() {
@@ -135,8 +137,11 @@ function moveGolfBall() {
     document.documentElement.scrollHeight -
     window.innerHeight;
 
-  const trackHeight = golfTrack.clientHeight;
-  const ballHeight = golfBall.offsetHeight;
+  const trackHeight =
+    golfTrack.clientHeight;
+
+  const ballHeight =
+    golfBall.offsetHeight;
 
   const maxBallMovement =
     trackHeight - ballHeight;
@@ -155,7 +160,7 @@ function moveGolfBall() {
 
 
 /* ---------------------------------------------------------
-   Drag golf ball
+   Start dragging
    --------------------------------------------------------- */
 
 if (golfBall && golfTrack) {
@@ -164,18 +169,16 @@ if (golfBall && golfTrack) {
 
     draggingGolfBall = true;
 
+    dragStartY = event.clientY;
+
+    dragStartScroll = window.scrollY;
+
+    dragStartBallTop =
+      parseFloat(
+        getComputedStyle(golfBall).top
+      ) || 0;
+
     golfBall.setPointerCapture(event.pointerId);
-
-    const ballRect =
-      golfBall.getBoundingClientRect();
-
-    /*
-      Remember exactly where inside the golf ball
-      the mouse grabbed it.
-    */
-
-    dragOffset =
-      event.clientY - ballRect.top;
 
     golfBall.style.cursor = "grabbing";
 
@@ -183,36 +186,43 @@ if (golfBall && golfTrack) {
   });
 
 
+  /* -------------------------------------------------------
+     Drag golf ball
+     ------------------------------------------------------- */
+
   golfBall.addEventListener("pointermove", (event) => {
 
     if (!draggingGolfBall) return;
 
-    const trackRect =
-      golfTrack.getBoundingClientRect();
+    event.preventDefault();
+
+    const trackHeight =
+      golfTrack.clientHeight;
 
     const ballHeight =
       golfBall.offsetHeight;
 
     const maxBallMovement =
-      trackRect.height - ballHeight;
+      trackHeight - ballHeight;
+
+    const maxScroll =
+      document.documentElement.scrollHeight -
+      window.innerHeight;
 
 
-    /*
-      Calculate the ball's new position.
+    /* How far the mouse has moved */
 
-      The point where you grabbed the ball stays
-      under the mouse cursor.
-    */
+    const deltaY =
+      event.clientY - dragStartY;
+
+
+    /* Move the ball by exactly that amount */
 
     let newTop =
-      event.clientY -
-      trackRect.top -
-      dragOffset;
+      dragStartBallTop + deltaY;
 
 
-    /*
-      Keep the ball inside the scrollbar.
-    */
+    /* Keep ball inside the track */
 
     newTop = Math.max(
       0,
@@ -223,17 +233,13 @@ if (golfBall && golfTrack) {
     );
 
 
-    /*
-      Move the ball visually.
-    */
+    /* Move the ball */
 
     golfBall.style.top =
       `${newTop}px`;
 
 
-    /*
-      Convert ball position into page scroll.
-    */
+    /* Convert ball position to page position */
 
     const scrollProgress =
       maxBallMovement > 0
@@ -241,18 +247,23 @@ if (golfBall && golfTrack) {
         : 0;
 
 
-    const maxScroll =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
+    const newScrollTop =
+      scrollProgress * maxScroll;
 
 
-    window.scrollTo({
-      top: scrollProgress * maxScroll,
-      behavior: "auto"
-    });
+    /* Scroll immediately */
+
+    window.scrollTo(
+      0,
+      newScrollTop
+    );
 
   });
 
+
+  /* -------------------------------------------------------
+     Stop dragging
+     ------------------------------------------------------- */
 
   function stopGolfBallDrag(event) {
 
@@ -262,14 +273,20 @@ if (golfBall && golfTrack) {
 
     golfBall.style.cursor = "grab";
 
-    if (event.pointerId !== undefined) {
+    if (
+      event.pointerId !== undefined
+    ) {
 
       try {
+
         golfBall.releasePointerCapture(
           event.pointerId
         );
+
       } catch (error) {
+
         /* Pointer capture already released */
+
       }
 
     }
