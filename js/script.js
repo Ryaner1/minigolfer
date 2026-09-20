@@ -122,6 +122,7 @@ const golfTrack = document.querySelector(".golf-scroll-track");
 let draggingGolfBall = false;
 let dragStartY = 0;
 let dragStartScroll = 0;
+let dragStartBallTop = 0;
 
 
 /* ---------------------------------------------------------
@@ -194,10 +195,18 @@ if (golfBall && golfTrack) {
     dragStartScroll = window.scrollY;
 
     /*
-      IMPORTANT:
-      Disable smooth scrolling while dragging.
-      Otherwise every mouse movement gets animated
-      instead of following the mouse immediately.
+      Remember where the ball was when
+      the drag started.
+    */
+
+    dragStartBallTop =
+      parseFloat(
+        getComputedStyle(golfBall).top
+      ) || 0;
+
+
+    /*
+      Turn off smooth scrolling while dragging.
     */
 
     document.documentElement.style.scrollBehavior = "auto";
@@ -226,45 +235,52 @@ if (golfBall && golfTrack) {
     }
 
 
-    /* How far the mouse has moved */
+    /* -----------------------------------------------------
+       Move the golf ball exactly with the mouse
+       ----------------------------------------------------- */
 
     const mouseDelta =
       event.clientY - dragStartY;
 
 
-    /*
-      Convert golf-ball movement into
-      equivalent page movement.
-    */
-
-    const scrollDelta =
-      mouseDelta *
-      (maxScroll / maxBallTravel);
+    let newBallTop =
+      dragStartBallTop + mouseDelta;
 
 
     /*
-      Calculate new page position.
+      Keep the ball inside the track.
     */
 
-    let newScroll =
-      dragStartScroll + scrollDelta;
-
-
-    /*
-      Keep page within its limits.
-    */
-
-    newScroll = Math.max(
+    newBallTop = Math.max(
       0,
       Math.min(
-        newScroll,
-        maxScroll
+        newBallTop,
+        maxBallTravel
       )
     );
 
 
     /*
-      Move page immediately.
+      Visually move the golf ball.
+    */
+
+    golfBall.style.top =
+      `${newBallTop}px`;
+
+
+    /* -----------------------------------------------------
+       Convert golf-ball position into page scroll
+       ----------------------------------------------------- */
+
+    const scrollProgress =
+      newBallTop / maxBallTravel;
+
+    const newScroll =
+      scrollProgress * maxScroll;
+
+
+    /*
+      Scroll immediately.
     */
 
     window.scrollTo({
@@ -290,7 +306,7 @@ if (golfBall && golfTrack) {
 
 
     /*
-      Restore the site's normal smooth scrolling.
+      Restore normal smooth scrolling.
     */
 
     document.documentElement.style.scrollBehavior = "";
@@ -308,10 +324,6 @@ if (golfBall && golfTrack) {
 
     }
 
-
-    /*
-      Make sure ball is perfectly synchronized.
-    */
 
     updateGolfBall();
   }
