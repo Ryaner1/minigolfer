@@ -122,16 +122,13 @@ const golfTrack = document.querySelector(".golf-scroll-track");
 let draggingGolfBall = false;
 let dragStartY = 0;
 let dragStartScroll = 0;
-let dragStartBallTop = 0;
 
 
 /* ---------------------------------------------------------
-   Update golf ball position from normal page scrolling
+   Get scrollbar measurements
    --------------------------------------------------------- */
 
-function moveGolfBall() {
-
-  if (!golfBall || !golfTrack || draggingGolfBall) return;
+function getScrollData() {
 
   const maxScroll =
     document.documentElement.scrollHeight -
@@ -146,21 +143,45 @@ function moveGolfBall() {
   const maxBallMovement =
     trackHeight - ballHeight;
 
-  if (maxScroll <= 0 || maxBallMovement <= 0) {
-    golfBall.style.top = "0px";
-    return;
-  }
-
-  const scrollProgress =
-    window.scrollY / maxScroll;
-
-  golfBall.style.top =
-    `${scrollProgress * maxBallMovement}px`;
+  return {
+    maxScroll,
+    maxBallMovement
+  };
 }
 
 
 /* ---------------------------------------------------------
-   Start dragging
+   Move golf ball when the page is scrolled normally
+   --------------------------------------------------------- */
+
+function moveGolfBall() {
+
+  if (!golfBall || !golfTrack || draggingGolfBall) {
+    return;
+  }
+
+  const {
+    maxScroll,
+    maxBallMovement
+  } = getScrollData();
+
+  if (maxScroll <= 0 || maxBallMovement <= 0) {
+
+    golfBall.style.top = "0px";
+
+    return;
+  }
+
+  const progress =
+    window.scrollY / maxScroll;
+
+  golfBall.style.top =
+    `${progress * maxBallMovement}px`;
+}
+
+
+/* ---------------------------------------------------------
+   Start dragging the golf ball
    --------------------------------------------------------- */
 
 if (golfBall && golfTrack) {
@@ -172,11 +193,6 @@ if (golfBall && golfTrack) {
     dragStartY = event.clientY;
 
     dragStartScroll = window.scrollY;
-
-    dragStartBallTop =
-      parseFloat(
-        getComputedStyle(golfBall).top
-      ) || 0;
 
     golfBall.setPointerCapture(event.pointerId);
 
@@ -192,70 +208,68 @@ if (golfBall && golfTrack) {
 
   golfBall.addEventListener("pointermove", (event) => {
 
-    if (!draggingGolfBall) return;
+    if (!draggingGolfBall) {
+      return;
+    }
 
     event.preventDefault();
 
-    const trackHeight =
-      golfTrack.clientHeight;
 
-    const ballHeight =
-      golfBall.offsetHeight;
+    const {
+      maxScroll,
+      maxBallMovement
+    } = getScrollData();
 
-    const maxBallMovement =
-      trackHeight - ballHeight;
 
-    const maxScroll =
-      document.documentElement.scrollHeight -
-      window.innerHeight;
+    if (maxScroll <= 0 || maxBallMovement <= 0) {
+      return;
+    }
 
 
     /* How far the mouse has moved */
 
-    const deltaY =
+    const mouseMovement =
       event.clientY - dragStartY;
 
 
-    /* Move the ball by exactly that amount */
+    /*
+      Convert the mouse movement on the small
+      scrollbar into movement through the entire page.
+    */
 
-    let newTop =
-      dragStartBallTop + deltaY;
+    const scrollMovement =
+      mouseMovement *
+      (maxScroll / maxBallMovement);
 
 
-    /* Keep ball inside the track */
+    /*
+      Calculate the new page position.
+    */
 
-    newTop = Math.max(
+    let newScroll =
+      dragStartScroll + scrollMovement;
+
+
+    /*
+      Keep the page inside its limits.
+    */
+
+    newScroll = Math.max(
       0,
       Math.min(
-        newTop,
-        maxBallMovement
+        newScroll,
+        maxScroll
       )
     );
 
 
-    /* Move the ball */
-
-    golfBall.style.top =
-      `${newTop}px`;
-
-
-    /* Convert ball position to page position */
-
-    const scrollProgress =
-      maxBallMovement > 0
-        ? newTop / maxBallMovement
-        : 0;
-
-
-    const newScrollTop =
-      scrollProgress * maxScroll;
-
-
-    /* Scroll immediately */
+    /*
+      Scroll the page.
+    */
 
     window.scrollTo(
       0,
-      newScrollTop
+      newScroll
     );
 
   });
@@ -267,15 +281,16 @@ if (golfBall && golfTrack) {
 
   function stopGolfBallDrag(event) {
 
-    if (!draggingGolfBall) return;
+    if (!draggingGolfBall) {
+      return;
+    }
 
     draggingGolfBall = false;
 
     golfBall.style.cursor = "grab";
 
-    if (
-      event.pointerId !== undefined
-    ) {
+
+    if (event.pointerId !== undefined) {
 
       try {
 
@@ -290,6 +305,12 @@ if (golfBall && golfTrack) {
       }
 
     }
+
+
+    /*
+      Make sure the golf ball is exactly where
+      the page currently is.
+    */
 
     moveGolfBall();
   }
@@ -308,7 +329,7 @@ if (golfBall && golfTrack) {
 
 
 /* ---------------------------------------------------------
-   Keep golf ball synced with normal scrolling
+   Keep golf ball synchronized with normal scrolling
    --------------------------------------------------------- */
 
 window.addEventListener(
