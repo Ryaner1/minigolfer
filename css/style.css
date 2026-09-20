@@ -860,15 +860,19 @@ html::-webkit-scrollbar {
   width: 22px;
   height: 100vh;
   z-index: 100;
-  pointer-events: auto;
-}
-
-/* Green mini-golf track */
-.golf-scroll-track {
   pointer-events: none;
 }
 
-/* The golf ball */
+.golf-scroll-track {
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 9px;
+  width: 4px;
+  background: #cbd1cb;
+  border-radius: 10px;
+}
+
 .golf-ball {
   pointer-events: auto;
   cursor: grab;
