@@ -120,31 +120,43 @@ const golfBall = document.querySelector(".golf-ball");
 const golfTrack = document.querySelector(".golf-scroll-track");
 
 let draggingGolfBall = false;
+let dragOffset = 0;
+
+
+/* ---------------------------------------------------------
+   Move golf ball to match page scroll position
+   --------------------------------------------------------- */
 
 function moveGolfBall() {
+
   if (!golfBall || !golfTrack || draggingGolfBall) return;
 
-  const scrollTop = window.scrollY;
   const maxScroll =
-    document.documentElement.scrollHeight - window.innerHeight;
+    document.documentElement.scrollHeight -
+    window.innerHeight;
 
   const trackHeight = golfTrack.clientHeight;
   const ballHeight = golfBall.offsetHeight;
-  const maxBallMovement = trackHeight - ballHeight;
 
-  if (maxScroll <= 0) {
+  const maxBallMovement =
+    trackHeight - ballHeight;
+
+  if (maxScroll <= 0 || maxBallMovement <= 0) {
     golfBall.style.top = "0px";
     return;
   }
 
-  const scrollProgress = scrollTop / maxScroll;
+  const scrollProgress =
+    window.scrollY / maxScroll;
 
   golfBall.style.top =
     `${scrollProgress * maxBallMovement}px`;
 }
 
 
-/* Move page when dragging the golf ball */
+/* ---------------------------------------------------------
+   Drag golf ball
+   --------------------------------------------------------- */
 
 if (golfBall && golfTrack) {
 
@@ -153,6 +165,17 @@ if (golfBall && golfTrack) {
     draggingGolfBall = true;
 
     golfBall.setPointerCapture(event.pointerId);
+
+    const ballRect =
+      golfBall.getBoundingClientRect();
+
+    /*
+      Remember exactly where inside the golf ball
+      the mouse grabbed it.
+    */
+
+    dragOffset =
+      event.clientY - ballRect.top;
 
     golfBall.style.cursor = "grabbing";
 
@@ -164,38 +187,64 @@ if (golfBall && golfTrack) {
 
     if (!draggingGolfBall) return;
 
-    const trackRect = golfTrack.getBoundingClientRect();
+    const trackRect =
+      golfTrack.getBoundingClientRect();
 
-    const ballHeight = golfBall.offsetHeight;
+    const ballHeight =
+      golfBall.offsetHeight;
 
     const maxBallMovement =
       trackRect.height - ballHeight;
 
+
+    /*
+      Calculate the ball's new position.
+
+      The point where you grabbed the ball stays
+      under the mouse cursor.
+    */
+
     let newTop =
       event.clientY -
       trackRect.top -
-      ballHeight / 2;
+      dragOffset;
 
-    /* Keep the ball inside the track */
+
+    /*
+      Keep the ball inside the scrollbar.
+    */
 
     newTop = Math.max(
       0,
-      Math.min(newTop, maxBallMovement)
+      Math.min(
+        newTop,
+        maxBallMovement
+      )
     );
 
-    golfBall.style.top = `${newTop}px`;
+
+    /*
+      Move the ball visually.
+    */
+
+    golfBall.style.top =
+      `${newTop}px`;
 
 
-    /* Convert golf-ball position into page scroll */
+    /*
+      Convert ball position into page scroll.
+    */
 
     const scrollProgress =
       maxBallMovement > 0
         ? newTop / maxBallMovement
         : 0;
 
+
     const maxScroll =
       document.documentElement.scrollHeight -
       window.innerHeight;
+
 
     window.scrollTo({
       top: scrollProgress * maxScroll,
@@ -214,11 +263,15 @@ if (golfBall && golfTrack) {
     golfBall.style.cursor = "grab";
 
     if (event.pointerId !== undefined) {
+
       try {
-        golfBall.releasePointerCapture(event.pointerId);
+        golfBall.releasePointerCapture(
+          event.pointerId
+        );
       } catch (error) {
-        /* Pointer capture may already be released */
+        /* Pointer capture already released */
       }
+
     }
 
     moveGolfBall();
@@ -237,7 +290,21 @@ if (golfBall && golfTrack) {
 }
 
 
-window.addEventListener("scroll", moveGolfBall);
-window.addEventListener("resize", moveGolfBall);
+/* ---------------------------------------------------------
+   Keep golf ball synced with normal scrolling
+   --------------------------------------------------------- */
+
+window.addEventListener(
+  "scroll",
+  moveGolfBall
+);
+
+window.addEventListener(
+  "resize",
+  moveGolfBall
+);
+
+
+/* Initial position */
 
 moveGolfBall();
