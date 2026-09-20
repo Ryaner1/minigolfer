@@ -5,13 +5,19 @@
 // ---------------------------------------------------------
 // EDIT PRICES HERE
 // ---------------------------------------------------------
-document.getElementById("price-mini-wood-9").textContent = "€9,500";
-document.getElementById("price-mini-wood-12").textContent = "€11,500";
-document.getElementById("price-mini-wood-18").textContent = "€14,500";
-document.getElementById("price-wood-park-9").textContent = "€14,500";
-document.getElementById("price-wood-park-12").textContent = "€19,500";
-document.getElementById("price-wood-park-18").textContent = "€24,500";
+const priceMiniWood9 = document.getElementById("price-mini-wood-9");
+const priceMiniWood12 = document.getElementById("price-mini-wood-12");
+const priceMiniWood18 = document.getElementById("price-mini-wood-18");
+const priceWoodPark9 = document.getElementById("price-wood-park-9");
+const priceWoodPark12 = document.getElementById("price-wood-park-12");
+const priceWoodPark18 = document.getElementById("price-wood-park-18");
 
+if (priceMiniWood9) priceMiniWood9.textContent = "€9,500";
+if (priceMiniWood12) priceMiniWood12.textContent = "€11,500";
+if (priceMiniWood18) priceMiniWood18.textContent = "€14,500";
+if (priceWoodPark9) priceWoodPark9.textContent = "€14,500";
+if (priceWoodPark12) priceWoodPark12.textContent = "€19,500";
+if (priceWoodPark18) priceWoodPark18.textContent = "€24,500";
 
 // ---------------------------------------------------------
 // Plan / 3D view tabs
@@ -106,31 +112,130 @@ document.querySelectorAll(".quote-btn").forEach((btn) => {
 // ---------------------------------------------------------
 document.getElementById("year").textContent =
   new Date().getFullYear();
-  /* =========================================================
+/* =========================================================
    MINI GOLF SCROLLBAR
    ========================================================= */
 
 const golfBall = document.querySelector(".golf-ball");
 const golfTrack = document.querySelector(".golf-scroll-track");
 
+let draggingGolfBall = false;
+
 function moveGolfBall() {
-  if (!golfBall || !golfTrack) return;
+  if (!golfBall || !golfTrack || draggingGolfBall) return;
 
   const scrollTop = window.scrollY;
-  const documentHeight = document.documentElement.scrollHeight;
-  const windowHeight = window.innerHeight;
+  const maxScroll =
+    document.documentElement.scrollHeight - window.innerHeight;
 
-  const maxScroll = documentHeight - windowHeight;
   const trackHeight = golfTrack.clientHeight;
   const ballHeight = golfBall.offsetHeight;
-
-  if (maxScroll <= 0) return;
-
-  const scrollProgress = scrollTop / maxScroll;
   const maxBallMovement = trackHeight - ballHeight;
 
-  golfBall.style.top = `${scrollProgress * maxBallMovement}px`;
+  if (maxScroll <= 0) {
+    golfBall.style.top = "0px";
+    return;
+  }
+
+  const scrollProgress = scrollTop / maxScroll;
+
+  golfBall.style.top =
+    `${scrollProgress * maxBallMovement}px`;
 }
+
+
+/* Move page when dragging the golf ball */
+
+if (golfBall && golfTrack) {
+
+  golfBall.addEventListener("pointerdown", (event) => {
+
+    draggingGolfBall = true;
+
+    golfBall.setPointerCapture(event.pointerId);
+
+    golfBall.style.cursor = "grabbing";
+
+    event.preventDefault();
+  });
+
+
+  golfBall.addEventListener("pointermove", (event) => {
+
+    if (!draggingGolfBall) return;
+
+    const trackRect = golfTrack.getBoundingClientRect();
+
+    const ballHeight = golfBall.offsetHeight;
+
+    const maxBallMovement =
+      trackRect.height - ballHeight;
+
+    let newTop =
+      event.clientY -
+      trackRect.top -
+      ballHeight / 2;
+
+    /* Keep the ball inside the track */
+
+    newTop = Math.max(
+      0,
+      Math.min(newTop, maxBallMovement)
+    );
+
+    golfBall.style.top = `${newTop}px`;
+
+
+    /* Convert golf-ball position into page scroll */
+
+    const scrollProgress =
+      maxBallMovement > 0
+        ? newTop / maxBallMovement
+        : 0;
+
+    const maxScroll =
+      document.documentElement.scrollHeight -
+      window.innerHeight;
+
+    window.scrollTo({
+      top: scrollProgress * maxScroll,
+      behavior: "auto"
+    });
+
+  });
+
+
+  function stopGolfBallDrag(event) {
+
+    if (!draggingGolfBall) return;
+
+    draggingGolfBall = false;
+
+    golfBall.style.cursor = "grab";
+
+    if (event.pointerId !== undefined) {
+      try {
+        golfBall.releasePointerCapture(event.pointerId);
+      } catch (error) {
+        /* Pointer capture may already be released */
+      }
+    }
+
+    moveGolfBall();
+  }
+
+
+  golfBall.addEventListener(
+    "pointerup",
+    stopGolfBallDrag
+  );
+
+  golfBall.addEventListener(
+    "pointercancel",
+    stopGolfBallDrag
+  );
+}
+
 
 window.addEventListener("scroll", moveGolfBall);
 window.addEventListener("resize", moveGolfBall);
