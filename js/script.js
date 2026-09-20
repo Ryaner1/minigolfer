@@ -151,7 +151,7 @@ function getScrollbarInfo() {
 
 
 /* ---------------------------------------------------------
-   Sync golf ball with normal scrolling
+   Update golf ball from normal scrolling
    --------------------------------------------------------- */
 
 function updateGolfBall() {
@@ -166,7 +166,9 @@ function updateGolfBall() {
   } = getScrollbarInfo();
 
   if (maxScroll <= 0 || maxBallTravel <= 0) {
+
     golfBall.style.top = "0px";
+
     return;
   }
 
@@ -179,7 +181,7 @@ function updateGolfBall() {
 
 
 /* ---------------------------------------------------------
-   Start dragging
+   Drag golf ball
    --------------------------------------------------------- */
 
 if (golfBall && golfTrack) {
@@ -191,6 +193,15 @@ if (golfBall && golfTrack) {
     dragStartY = event.clientY;
     dragStartScroll = window.scrollY;
 
+    /*
+      IMPORTANT:
+      Disable smooth scrolling while dragging.
+      Otherwise every mouse movement gets animated
+      instead of following the mouse immediately.
+    */
+
+    document.documentElement.style.scrollBehavior = "auto";
+
     golfBall.setPointerCapture(event.pointerId);
 
     golfBall.style.cursor = "grabbing";
@@ -198,10 +209,6 @@ if (golfBall && golfTrack) {
     event.preventDefault();
   });
 
-
-  /* -------------------------------------------------------
-     Drag
-     ------------------------------------------------------- */
 
   golfBall.addEventListener("pointermove", (event) => {
 
@@ -219,14 +226,15 @@ if (golfBall && golfTrack) {
     }
 
 
-    /* Distance the mouse has moved */
+    /* How far the mouse has moved */
 
     const mouseDelta =
       event.clientY - dragStartY;
 
 
     /*
-      Convert scrollbar movement into page movement.
+      Convert golf-ball movement into
+      equivalent page movement.
     */
 
     const scrollDelta =
@@ -235,7 +243,7 @@ if (golfBall && golfTrack) {
 
 
     /*
-      New page position.
+      Calculate new page position.
     */
 
     let newScroll =
@@ -243,7 +251,7 @@ if (golfBall && golfTrack) {
 
 
     /*
-      Keep scrolling inside the page.
+      Keep page within its limits.
     */
 
     newScroll = Math.max(
@@ -256,13 +264,14 @@ if (golfBall && golfTrack) {
 
 
     /*
-      Scroll instantly.
+      Move page immediately.
     */
 
-    window.scrollTo(
-      0,
-      newScroll
-    );
+    window.scrollTo({
+      top: newScroll,
+      left: 0,
+      behavior: "auto"
+    });
 
   });
 
@@ -279,15 +288,30 @@ if (golfBall && golfTrack) {
 
     golfBall.style.cursor = "grab";
 
+
+    /*
+      Restore the site's normal smooth scrolling.
+    */
+
+    document.documentElement.style.scrollBehavior = "";
+
+
     if (event.pointerId !== undefined) {
 
       try {
+
         golfBall.releasePointerCapture(
           event.pointerId
         );
+
       } catch (error) {}
 
     }
+
+
+    /*
+      Make sure ball is perfectly synchronized.
+    */
 
     updateGolfBall();
   }
@@ -306,7 +330,7 @@ if (golfBall && golfTrack) {
 
 
 /* ---------------------------------------------------------
-   Normal scrolling
+   Normal page scrolling
    --------------------------------------------------------- */
 
 window.addEventListener(
