@@ -1015,6 +1015,193 @@ html::-webkit-scrollbar {
   margin: 0 auto;
 }
 
+
+/* ---------- completed projects ---------- */
+
+.completed-projects {
+  position: relative;
+  width: 100%;
+}
+
+.completed-project {
+  width: 100%;
+  height: calc(100vh - var(--completed-header-height, 75px));
+  min-height: calc(100vh - var(--completed-header-height, 75px));
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  margin: 0;
+  padding: 0;
+
+  scroll-margin-top: var(--completed-header-height, 75px);
+}
+
+.completed-project.reverse .completed-image {
+  order: 2;
+}
+
+.completed-project.reverse .completed-text {
+  order: 1;
+}
+
+
+/* ---------- project images ---------- */
+
+.completed-image {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  background: #ffffff;
+}
+
+.completed-image img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  cursor: pointer;
+
+  transition: transform 0.35s ease;
+}
+
+.completed-image:hover img {
+  transform: scale(1.025);
+}
+
+
+/* ---------- project text ---------- */
+
+.completed-text {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 70px;
+
+  box-sizing: border-box;
+}
+
+.completed-text h2 {
+  margin: 10px 0 20px;
+}
+
+.completed-text p:last-child {
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+
+/* ---------- project navigation dots ---------- */
+
+.completed-dots {
+  position: fixed;
+
+  right: 28px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 50;
+
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.completed-dot {
+  width: 13px;
+  height: 13px;
+
+  padding: 0;
+
+  border-radius: 50%;
+
+  border: 2px solid var(--ink);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.completed-dot.active {
+  background: var(--ink);
+  transform: scale(1.25);
+}
+
+.completed-dot:hover {
+  background: var(--turf);
+}
+
+
+/* ---------- mobile ---------- */
+
+@media (max-width: 800px) {
+
+  .completed-work-intro {
+    min-height: calc(
+      100vh - var(--completed-header-height, 75px)
+    );
+
+    height: auto;
+
+    padding: 60px 20px;
+  }
+
+  .completed-project {
+    grid-template-columns: 1fr;
+
+    height: auto;
+    min-height: 0;
+  }
+
+  .completed-image {
+    height: 52vh;
+    min-height: 52vh;
+  }
+
+  .completed-image img {
+    height: 100%;
+  }
+
+  .completed-text {
+    height: auto;
+    min-height: 48vh;
+
+    padding: 45px 30px;
+  }
+
+  .completed-project.reverse .completed-image {
+    order: 1;
+  }
+
+  .completed-project.reverse .completed-text {
+    order: 2;
+  }
+
+  .completed-dots {
+    right: 14px;
+    gap: 11px;
+  }
+
+  .completed-dot {
+    width: 11px;
+    height: 11px;
+  }
+}
+
 @media (max-width: 800px) {
 
 
