@@ -366,3 +366,241 @@ window.addEventListener(
    --------------------------------------------------------- */
 
 updateGolfBall();
+
+/* =========================================================
+   COMPLETED WORK
+   ONE SCREEN PER SCROLL
+   ========================================================= */
+
+const completedIntro =
+  document.querySelector(".completed-work-intro");
+
+const completedProjects =
+  document.querySelectorAll(".completed-project");
+
+const completedDots =
+  document.querySelectorAll(".completed-dot");
+
+
+/* ---------------------------------------------------------
+   Check if this is the Completed Work page
+   --------------------------------------------------------- */
+
+if (
+  completedIntro &&
+  completedProjects.length &&
+  completedDots.length
+) {
+
+  let currentCompletedScreen = 0;
+
+  let completedScrollLocked = false;
+
+
+  /* -------------------------------------------------------
+     All screens
+     ------------------------------------------------------- */
+
+  const completedScreens = [
+    completedIntro,
+    ...completedProjects
+  ];
+
+
+  /* -------------------------------------------------------
+     Update active dot
+     ------------------------------------------------------- */
+
+  function updateCompletedDots(index) {
+
+    completedDots.forEach((dot, i) => {
+
+      dot.classList.toggle(
+        "active",
+        i === index
+      );
+
+    });
+
+  }
+
+
+  /* -------------------------------------------------------
+     Go to a screen
+     ------------------------------------------------------- */
+
+  function goToCompletedScreen(index) {
+
+    index = Math.max(
+      0,
+      Math.min(
+        index,
+        completedScreens.length - 1
+      )
+    );
+
+
+    currentCompletedScreen = index;
+
+
+    completedScreens[index].scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+
+
+    updateCompletedDots(index);
+  }
+
+
+  /* -------------------------------------------------------
+     Mouse wheel / trackpad
+     ------------------------------------------------------- */
+
+  window.addEventListener(
+    "wheel",
+    (event) => {
+
+      /*
+        Only handle meaningful vertical movement.
+      */
+
+      if (Math.abs(event.deltaY) < 10) {
+        return;
+      }
+
+
+      /*
+        Prevent the browser from doing
+        its normal continuous scrolling.
+      */
+
+      event.preventDefault();
+
+
+      /*
+        Stop one wheel movement from
+        jumping through multiple screens.
+      */
+
+      if (completedScrollLocked) {
+        return;
+      }
+
+
+      completedScrollLocked = true;
+
+
+      /* SCROLL DOWN */
+
+      if (event.deltaY > 0) {
+
+        goToCompletedScreen(
+          currentCompletedScreen + 1
+        );
+
+      }
+
+
+      /* SCROLL UP */
+
+      else {
+
+        goToCompletedScreen(
+          currentCompletedScreen - 1
+        );
+
+      }
+
+
+      /*
+        Unlock after the animation.
+      */
+
+      setTimeout(() => {
+
+        completedScrollLocked = false;
+
+      }, 800);
+
+    },
+    {
+      passive: false
+    }
+  );
+
+
+  /* -------------------------------------------------------
+     DOT BUTTONS
+     ------------------------------------------------------- */
+
+  completedDots.forEach((dot) => {
+
+    dot.addEventListener(
+      "click",
+      () => {
+
+        const index =
+          Number(dot.dataset.project);
+
+        goToCompletedScreen(index);
+
+      }
+    );
+
+  });
+
+
+  /* -------------------------------------------------------
+     Update dots when scrolling
+     ------------------------------------------------------- */
+
+  window.addEventListener(
+    "scroll",
+    () => {
+
+      let closestIndex = 0;
+
+      let closestDistance = Infinity;
+
+
+      completedScreens.forEach(
+        (screen, index) => {
+
+          const distance =
+            Math.abs(
+              screen.getBoundingClientRect().top
+            );
+
+
+          if (distance < closestDistance) {
+
+            closestDistance = distance;
+
+            closestIndex = index;
+
+          }
+
+        }
+      );
+
+
+      currentCompletedScreen =
+        closestIndex;
+
+
+      updateCompletedDots(
+        closestIndex
+      );
+
+    }
+  );
+
+
+  /* -------------------------------------------------------
+     Start on dot 1
+     ------------------------------------------------------- */
+
+  updateCompletedDots(0);
+
+}

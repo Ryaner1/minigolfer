@@ -25,6 +25,11 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+body {
+  scroll-snap-type: y mandatory;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -868,11 +873,10 @@ html::-webkit-scrollbar {
   top: 8px;
   bottom: 8px;
   left: 9px;
-  width: 4px;
+  width: 6px;
   background: #cbd1cb;
   border-radius: 10px;
 }
-
 .golf-ball {
   position: absolute;
   left: 50%;
@@ -935,18 +939,40 @@ html::-webkit-scrollbar {
 }
 /* =========================================================
    COMPLETED WORK PAGE
+   FULL SCREEN PROJECT SLIDER
    ========================================================= */
+
+
+/* ---------------------------------------------------------
+   PAGE
+   --------------------------------------------------------- */
 
 .completed-work-page {
   background: #f4f5f0;
 }
 
 
-/* INTRO */
+/* ---------------------------------------------------------
+   INTRO SCREEN
+   --------------------------------------------------------- */
 
 .completed-work-intro {
-  padding: 110px 0 70px;
+
+  min-height: calc(100vh - 74px);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
+
+  padding: 80px 28px;
+
+  scroll-snap-align: start;
+}
+
+.completed-work-intro .wrap {
+  width: 100%;
 }
 
 .completed-work-intro h1 {
@@ -959,27 +985,39 @@ html::-webkit-scrollbar {
 }
 
 
-/* PROJECTS */
+/* ---------------------------------------------------------
+   PROJECT AREA
+   --------------------------------------------------------- */
 
 .completed-projects {
-  padding: 20px 0 120px;
+  position: relative;
 }
 
 
-/* EACH PROJECT */
+/* ---------------------------------------------------------
+   EACH PROJECT
+   --------------------------------------------------------- */
 
 .completed-project {
+
+  width: 100%;
+
+  min-height: calc(100vh - 74px);
+
   display: grid;
+
   grid-template-columns: 1fr 1fr;
-  gap: 70px;
 
-  align-items: stretch;
+  margin: 0;
+  padding: 0;
 
-  margin-bottom: 70px;
+  scroll-snap-align: start;
 }
 
 
-/* ALTERNATING ROW */
+/* ---------------------------------------------------------
+   ALTERNATING PROJECTS
+   --------------------------------------------------------- */
 
 .completed-project.reverse .completed-image {
   order: 2;
@@ -990,21 +1028,27 @@ html::-webkit-scrollbar {
 }
 
 
-/* IMAGE */
+/* ---------------------------------------------------------
+   IMAGE
+   --------------------------------------------------------- */
 
 .completed-image {
-  min-height: 380px;
+
+  width: 100%;
+
+  height: calc(100vh - 74px);
+
   overflow: hidden;
+
   background: #dfe7df;
 }
 
 .completed-image img {
+
   display: block;
 
   width: 100%;
   height: 100%;
-
-  min-height: 380px;
 
   object-fit: cover;
 
@@ -1018,14 +1062,21 @@ html::-webkit-scrollbar {
 }
 
 
-/* TEXT */
+/* ---------------------------------------------------------
+   TEXT
+   --------------------------------------------------------- */
 
 .completed-text {
+
+  height: calc(100vh - 74px);
+
   display: flex;
+
   flex-direction: column;
+
   justify-content: center;
 
-  padding: 45px;
+  padding: 70px;
 }
 
 .completed-text h2 {
@@ -1033,41 +1084,142 @@ html::-webkit-scrollbar {
 }
 
 .completed-text p:last-child {
+
   max-width: 500px;
+
   line-height: 1.7;
 }
 
 
-/* MOBILE */
+/* ---------------------------------------------------------
+   FIVE DOTS
+   --------------------------------------------------------- */
+
+.completed-dots {
+
+  position: fixed;
+
+  right: 28px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  z-index: 50;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+.completed-dot {
+
+  width: 13px;
+  height: 13px;
+
+  padding: 0;
+
+  border-radius: 50%;
+
+  border: 2px solid var(--ink);
+
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.completed-dot.active {
+
+  background: var(--ink);
+
+  transform: scale(1.25);
+}
+
+
+.completed-dot:hover {
+  background: var(--turf);
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
 
 @media (max-width: 800px) {
 
   .completed-work-intro {
-    padding: 80px 0 50px;
+
+    min-height: calc(100vh - 150px);
+
+    padding: 60px 20px;
   }
+
 
   .completed-project {
-    grid-template-columns: 1fr;
-    gap: 0;
 
-    margin-bottom: 50px;
+    grid-template-columns: 1fr;
+
+    min-height: auto;
   }
+
+
+  .completed-image,
+  .completed-text {
+
+    height: auto;
+  }
+
+
+  .completed-image {
+
+    min-height: 52vh;
+  }
+
+
+  .completed-image img {
+
+    min-height: 52vh;
+  }
+
+
+  .completed-text {
+
+    min-height: 48vh;
+
+    padding: 45px 30px;
+  }
+
 
   .completed-project.reverse .completed-image {
     order: 1;
   }
 
+
   .completed-project.reverse .completed-text {
     order: 2;
   }
 
-  .completed-image,
-  .completed-image img {
-    min-height: 300px;
+
+  .completed-dots {
+
+    right: 14px;
+
+    gap: 11px;
   }
 
-  .completed-text {
-    padding: 35px 20px 45px;
+
+  .completed-dot {
+
+    width: 11px;
+    height: 11px;
   }
 
 }
