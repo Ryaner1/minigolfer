@@ -957,7 +957,7 @@ html::-webkit-scrollbar {
    --------------------------------------------------------- */
 
 .completed-work-intro {
-
+  height: calc(100vh - 74px);
   min-height: calc(100vh - 74px);
 
   display: flex;
@@ -991,21 +991,19 @@ html::-webkit-scrollbar {
 
 .completed-projects {
   position: relative;
+  overflow: hidden;
 }
-
 
 /* ---------------------------------------------------------
    EACH PROJECT
    --------------------------------------------------------- */
 
 .completed-project {
-
   width: 100%;
-
+  height: calc(100vh - 74px);
   min-height: calc(100vh - 74px);
 
   display: grid;
-
   grid-template-columns: 1fr 1fr;
 
   margin: 0;
@@ -1013,7 +1011,6 @@ html::-webkit-scrollbar {
 
   scroll-snap-align: start;
 }
-
 
 /* ---------------------------------------------------------
    ALTERNATING PROJECTS
