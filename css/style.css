@@ -1067,12 +1067,6 @@ html::-webkit-scrollbar {
   object-fit: cover;
 
   cursor: pointer;
-
-  transition: transform 0.35s ease;
-}
-
-.completed-image:hover img {
-  transform: scale(1.025);
 }
 
 
