@@ -218,9 +218,10 @@ code {
     ),
     url("../images/Banner.png");
 
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+background-size: contain;
+background-repeat: no-repeat;
+background-position: center;
+background-color: #1f241f;
 }
 
 .hero-inner {
@@ -965,11 +966,11 @@ html::-webkit-scrollbar {
   inset: 0;
 
   background-image: url("../images/banner2.png");
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
 
-  filter: blur(2px);
+  filter: blur(1px);
   transform: scale(1.02);
 
   z-index: 0;
