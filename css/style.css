@@ -1146,23 +1146,32 @@ html::-webkit-scrollbar {
 }
 
 
-/* ---------- mobile ---------- */
+/* =========================================================
+   COURSE INFORMATION BOXES
+   ========================================================= */
 
+.collection-inner > .course-features {
+  grid-column: 1 / -1;
+  width: 100%;
+  order: 3;
+}
+
+/* ---------- mobile ---------- */
 /* =========================================================
    MOBILE COURSE ORDER
    ========================================================= */
 
 @media (max-width: 700px) {
 
-  /* Put course content into one vertical sequence */
-  .collection-inner,
-  .collection-inner.reverse {
+  .collection {
     display: flex;
     flex-direction: column;
-    gap: 0;
   }
 
-  /* Let the individual pieces become flex items */
+  .collection-inner {
+    display: contents;
+  }
+
   .collection-info {
     display: contents;
   }
@@ -1170,7 +1179,8 @@ html::-webkit-scrollbar {
   /* 1. Course title + description */
   .course-heading {
     order: 1;
-    padding-bottom: 32px;
+    width: 100%;
+    padding: 0 20px 32px;
   }
 
   /* 2. Plan / 3D viewer */
@@ -1178,6 +1188,7 @@ html::-webkit-scrollbar {
     order: 2;
     width: 100%;
     max-width: none;
+    padding: 0 20px;
     margin-bottom: 42px;
   }
 
@@ -1189,17 +1200,15 @@ html::-webkit-scrollbar {
   /* 3. Four information boxes */
   .course-features {
     order: 3;
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 42px;
+    width: calc(100% - 40px);
+    margin: 0 20px 42px;
   }
 
-  /* 4. Prices LAST */
+  /* 4. Prices last */
   .tier-grid {
     order: 4;
-    width: 100%;
-    margin-top: 0;
-    margin-bottom: 0;
+    width: calc(100% - 40px);
+    margin: 0 20px;
   }
 
 }
