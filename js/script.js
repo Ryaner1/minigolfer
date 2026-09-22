@@ -506,151 +506,121 @@ if (
 
 document.querySelectorAll(".completed-gallery").forEach((gallery) => {
 
-  const images =
-    gallery.querySelectorAll(".completed-gallery-img");
+  const track = gallery.querySelector(".gallery-images");
+  const images = Array.from(
+    gallery.querySelectorAll(".completed-gallery-img")
+  );
 
-  const previous =
-    gallery.querySelector(".gallery-prev");
+  const previous = gallery.querySelector(".gallery-prev");
+  const next = gallery.querySelector(".gallery-next");
 
-  const next =
-    gallery.querySelector(".gallery-next");
-
-  if (!images.length || !previous || !next) {
+  if (!track || images.length < 2 || !previous || !next) {
     return;
   }
 
-  let currentImage = 0;
+  /*
+    Clone the last image to the beginning
+    and the first image to the end.
+
+    This lets the gallery loop smoothly
+    without jumping across all the images.
+  */
+
+  const firstClone = images[0].cloneNode(true);
+  const lastClone = images[images.length - 1].cloneNode(true);
+
+  track.insertBefore(lastClone, track.firstChild);
+  track.appendChild(firstClone);
+
+  let currentIndex = 1;
   let isAnimating = false;
 
-  function showImage(newIndex, direction) {
+  function moveTrack(animate = true) {
+
+    track.style.transition =
+      animate ? "transform 0.45s ease" : "none";
+
+    track.style.transform =
+      "translateX(-" + (currentIndex * 100) + "%)";
+
+  }
+
+  function showNext() {
 
     if (isAnimating) {
       return;
     }
 
-    if (newIndex < 0) {
-      newIndex = images.length - 1;
-    }
+    isAnimating = true;
+    currentIndex++;
 
-    if (newIndex >= images.length) {
-      newIndex = 0;
-    }
+    moveTrack(true);
 
-    if (newIndex === currentImage) {
+  }
+
+  function showPrevious() {
+
+    if (isAnimating) {
       return;
     }
 
     isAnimating = true;
+    currentIndex--;
 
-    const current = images[currentImage];
-    const nextImage = images[newIndex];
+    moveTrack(true);
 
-    /*
-      Direction:
-      right = next image comes from right
-      left  = previous image comes from left
-    */
-
-    if (direction === "right") {
-
-      nextImage.style.transform = "translateX(100%)";
-
-    } else {
-
-      nextImage.style.transform = "translateX(-100%)";
-
-    }
-
-    nextImage.classList.add("active");
-
-    /*
-      Force the browser to register
-      the starting position before moving.
-    */
-
-    nextImage.offsetWidth;
-
-    /*
-      Move current image out.
-    */
-
-    if (direction === "right") {
-
-      current.style.transform = "translateX(-100%)";
-      nextImage.style.transform = "translateX(0)";
-
-    } else {
-
-      current.style.transform = "translateX(100%)";
-      nextImage.style.transform = "translateX(0)";
-
-    }
-
-    setTimeout(() => {
-
-      current.classList.remove("active");
-
-      current.style.transform = "";
-
-      nextImage.style.transform = "";
-
-      currentImage = newIndex;
-
-      isAnimating = false;
-
-    }, 450);
   }
-
-
-  /*
-    RIGHT ARROW
-    Image slides to the left.
-  */
 
   next.addEventListener("click", (event) => {
 
     event.stopPropagation();
-
-    showImage(
-      currentImage + 1,
-      "right"
-    );
+    showNext();
 
   });
-
-
-  /*
-    LEFT ARROW
-    Image slides to the right.
-  */
 
   previous.addEventListener("click", (event) => {
 
     event.stopPropagation();
+    showPrevious();
 
-    showImage(
-      currentImage - 1,
-      "left"
-    );
+  });
+
+
+  track.addEventListener("transitionend", () => {
+
+    /*
+      We reached the fake first image.
+      Jump silently to the real first image.
+    */
+
+    if (currentIndex === images.length + 1) {
+
+      currentIndex = 1;
+      moveTrack(false);
+
+    }
+
+    /*
+      We reached the fake last image.
+      Jump silently to the real last image.
+    */
+
+    if (currentIndex === 0) {
+
+      currentIndex = images.length;
+      moveTrack(false);
+
+    }
+
+    isAnimating = false;
 
   });
 
 
   /*
-    Start with the first image.
+    Start on the real first image.
   */
 
-  images.forEach((image, index) => {
-
-    image.classList.remove("active");
-
-    image.style.transform =
-      index === 0
-        ? "translateX(0)"
-        : "translateX(100%)";
-
-  });
-
-  images[0].classList.add("active");
+  moveTrack(false);
 
 });
