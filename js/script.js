@@ -12,12 +12,13 @@ const priceWoodPark9 = document.getElementById("price-wood-park-9");
 const priceWoodPark12 = document.getElementById("price-wood-park-12");
 const priceWoodPark18 = document.getElementById("price-wood-park-18");
 
-if (priceMiniWood9) priceMiniWood9.textContent = "€9,500";
-if (priceMiniWood12) priceMiniWood12.textContent = "€11,500";
-if (priceMiniWood18) priceMiniWood18.textContent = "€14,500";
-if (priceWoodPark9) priceWoodPark9.textContent = "€14,500";
-if (priceWoodPark12) priceWoodPark12.textContent = "€19,500";
-if (priceWoodPark18) priceWoodPark18.textContent = "€24,500";
+if (priceMiniWood9) priceMiniWood9.textContent = "€10,500";
+if (priceMiniWood12) priceMiniWood12.textContent = "€12,500";
+if (priceMiniWood18) priceMiniWood18.textContent = "€15,500";
+
+if (priceWoodPark9) priceWoodPark9.textContent = "€15,500";
+if (priceWoodPark12) priceWoodPark12.textContent = "€20,500";
+if (priceWoodPark18) priceWoodPark18.textContent = "€25,500";
 
 // ---------------------------------------------------------
 // Plan / 3D view tabs
