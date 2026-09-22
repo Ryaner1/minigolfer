@@ -1212,3 +1212,28 @@ html::-webkit-scrollbar {
   }
 
 }
+
+@media (max-width: 700px) {
+
+  /* Wood Park mobile order */
+  .collection-inner.reverse .collection-info {
+    display: contents;
+  }
+
+  .collection-inner.reverse .course-heading {
+    order: 1;
+  }
+
+  .collection-inner.reverse .collection-viewer {
+    order: 2;
+  }
+
+  .collection-inner.reverse .course-features {
+    order: 3;
+  }
+
+  .collection-inner.reverse .tier-grid {
+    order: 4;
+  }
+
+}
