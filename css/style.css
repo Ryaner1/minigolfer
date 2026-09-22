@@ -1148,61 +1148,55 @@ html::-webkit-scrollbar {
 
 /* ---------- mobile ---------- */
 
-@media (max-width: 800px) {
+/* =========================================================
+   MOBILE COURSE ORDER
+   ========================================================= */
 
-  .completed-work-intro {
-    min-height: calc(
-      100vh - var(--completed-header-height, 75px)
-    );
+@media (max-width: 700px) {
 
-    height: auto;
-
-    padding: 60px 20px;
+  /* Put the course content into one vertical sequence */
+  .collection-inner,
+  .collection-inner.reverse {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
 
-  .completed-project {
-    grid-template-columns: 1fr;
-
-    height: auto;
-    min-height: 0;
+  .collection-info {
+    display: contents;
   }
 
-  .completed-image {
-    height: 52vh;
-    min-height: 52vh;
-  }
-
-  .completed-image img {
-    height: 100%;
-  }
-
-  .completed-text {
-    height: auto;
-    min-height: 48vh;
-
-    padding: 45px 30px;
-  }
-
-  .completed-project.reverse .completed-image {
+  /* 1. Course title + description */
+  .course-heading {
     order: 1;
+    padding-bottom: 32px;
   }
 
-  .completed-project.reverse .completed-text {
+  /* 2. Plan / 3D viewer */
+  .collection-viewer {
     order: 2;
+    width: 100%;
+    max-width: none;
+    margin-bottom: 42px;
   }
 
-  .completed-dots {
-    right: 14px;
-    gap: 11px;
+  /* 3. Hide the 1–18 hole list on mobile */
+  .hole-list {
+    display: none;
   }
 
-  .completed-dot {
-    width: 11px;
-    height: 11px;
+  /* 4. Four information boxes */
+  .collection > .wrap:not(.collection-inner) {
+    margin-top: 0;
+    order: 3;
   }
-}
 
-@media (max-width: 800px) {
-
+  /* 5. Prices LAST */
+  .tier-grid {
+    order: 4;
+    width: 100%;
+    margin-top: 42px;
+    margin-bottom: 0;
+  }
 
 }
