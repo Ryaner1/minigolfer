@@ -1172,13 +1172,19 @@ html::-webkit-scrollbar {
 .gallery-images {
   position: absolute;
   inset: 0;
+
+  display: flex;
   width: 100%;
   height: 100%;
+
+  transform: translateX(-100%);
+  transition: transform 0.45s ease;
+  will-change: transform;
 }
 
 .completed-gallery-img {
-  position: absolute;
-  inset: 0;
+  position: relative;
+  flex: 0 0 100%;
 
   width: 100%;
   height: 100%;
@@ -1187,13 +1193,6 @@ html::-webkit-scrollbar {
 
   opacity: 1;
   visibility: visible;
-
-  transform: translateX(100%);
-  transition: transform 0.45s ease;
-}
-
-.completed-gallery-img.active {
-  transform: translateX(0);
 }
 
 
@@ -1266,6 +1265,7 @@ html::-webkit-scrollbar {
   }
 
 }
+
 /* ---------- mobile ---------- */
 /* =========================================================
    MOBILE COURSE ORDER
