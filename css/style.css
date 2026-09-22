@@ -1198,7 +1198,7 @@ html::-webkit-scrollbar {
 }
 
 .gallery-next {
-  right: 55px;
+  right: 12px;
 }
 
 
@@ -1217,7 +1217,7 @@ html::-webkit-scrollbar {
   }
 
   .gallery-next {
-    right: 48px;
+    right: 8px;
   }
 
 }
