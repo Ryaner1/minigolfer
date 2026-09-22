@@ -1154,7 +1154,7 @@ html::-webkit-scrollbar {
 
 @media (max-width: 700px) {
 
-  /* Put the course content into one vertical sequence */
+  /* Put course content into one vertical sequence */
   .collection-inner,
   .collection-inner.reverse {
     display: flex;
@@ -1162,6 +1162,7 @@ html::-webkit-scrollbar {
     gap: 0;
   }
 
+  /* Let the individual pieces become flex items */
   .collection-info {
     display: contents;
   }
@@ -1180,22 +1181,24 @@ html::-webkit-scrollbar {
     margin-bottom: 42px;
   }
 
-  /* 3. Hide the 1–18 hole list on mobile */
+  /* Hide the 1–18 hole list on mobile */
   .hole-list {
     display: none;
   }
 
-  /* 4. Four information boxes */
-  .collection > .wrap:not(.collection-inner) {
-    margin-top: 0;
+  /* 3. Four information boxes */
+  .course-features {
     order: 3;
+    width: 100%;
+    margin-top: 0;
+    margin-bottom: 42px;
   }
 
-  /* 5. Prices LAST */
+  /* 4. Prices LAST */
   .tier-grid {
     order: 4;
     width: 100%;
-    margin-top: 42px;
+    margin-top: 0;
     margin-bottom: 0;
   }
 
