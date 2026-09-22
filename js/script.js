@@ -499,3 +499,50 @@ if (
 
   updateCompletedDots(0);
 }
+
+/* =========================================================
+   COMPLETED WORK IMAGE GALLERIES
+   ========================================================= */
+
+document.querySelectorAll(".completed-gallery").forEach((gallery) => {
+
+  const images = gallery.querySelectorAll(".completed-gallery-img");
+  const previous = gallery.querySelector(".gallery-prev");
+  const next = gallery.querySelector(".gallery-next");
+
+  if (!images.length || !previous || !next) {
+    return;
+  }
+
+  let currentImage = 0;
+
+  function showImage(index) {
+
+    if (index < 0) {
+      index = images.length - 1;
+    }
+
+    if (index >= images.length) {
+      index = 0;
+    }
+
+    currentImage = index;
+
+    images.forEach((image, i) => {
+      image.classList.toggle("active", i === currentImage);
+    });
+  }
+
+  previous.addEventListener("click", (event) => {
+    event.stopPropagation();
+    showImage(currentImage - 1);
+  });
+
+  next.addEventListener("click", (event) => {
+    event.stopPropagation();
+    showImage(currentImage + 1);
+  });
+
+  showImage(0);
+
+});
