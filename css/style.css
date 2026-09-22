@@ -1097,47 +1097,9 @@ html::-webkit-scrollbar {
 
 /* ---------- project navigation dots ---------- */
 
+/* Hidden visually — one-screen scrolling stays unchanged. */
 .completed-dots {
-  position: fixed;
-
-  right: 28px;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  z-index: 50;
-
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.completed-dot {
-  width: 13px;
-  height: 13px;
-
-  padding: 0;
-
-  border-radius: 50%;
-
-  border: 2px solid var(--ink);
-
-  background: transparent;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
-}
-
-.completed-dot.active {
-  background: var(--ink);
-  transform: scale(1.25);
-}
-
-.completed-dot:hover {
-  background: var(--turf);
+  display: none;
 }
 
 
