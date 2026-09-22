@@ -1185,15 +1185,15 @@ html::-webkit-scrollbar {
 
   object-fit: cover;
 
-  opacity: 0;
-  visibility: hidden;
+  opacity: 1;
+  visibility: visible;
 
-  transition: opacity 0.25s ease;
+  transform: translateX(100%);
+  transition: transform 0.45s ease;
 }
 
 .completed-gallery-img.active {
-  opacity: 1;
-  visibility: visible;
+  transform: translateX(0);
 }
 
 

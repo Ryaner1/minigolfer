@@ -506,43 +506,151 @@ if (
 
 document.querySelectorAll(".completed-gallery").forEach((gallery) => {
 
-  const images = gallery.querySelectorAll(".completed-gallery-img");
-  const previous = gallery.querySelector(".gallery-prev");
-  const next = gallery.querySelector(".gallery-next");
+  const images =
+    gallery.querySelectorAll(".completed-gallery-img");
+
+  const previous =
+    gallery.querySelector(".gallery-prev");
+
+  const next =
+    gallery.querySelector(".gallery-next");
 
   if (!images.length || !previous || !next) {
     return;
   }
 
   let currentImage = 0;
+  let isAnimating = false;
 
-  function showImage(index) {
+  function showImage(newIndex, direction) {
 
-    if (index < 0) {
-      index = images.length - 1;
+    if (isAnimating) {
+      return;
     }
 
-    if (index >= images.length) {
-      index = 0;
+    if (newIndex < 0) {
+      newIndex = images.length - 1;
     }
 
-    currentImage = index;
+    if (newIndex >= images.length) {
+      newIndex = 0;
+    }
 
-    images.forEach((image, i) => {
-      image.classList.toggle("active", i === currentImage);
-    });
+    if (newIndex === currentImage) {
+      return;
+    }
+
+    isAnimating = true;
+
+    const current = images[currentImage];
+    const nextImage = images[newIndex];
+
+    /*
+      Direction:
+      right = next image comes from right
+      left  = previous image comes from left
+    */
+
+    if (direction === "right") {
+
+      nextImage.style.transform = "translateX(100%)";
+
+    } else {
+
+      nextImage.style.transform = "translateX(-100%)";
+
+    }
+
+    nextImage.classList.add("active");
+
+    /*
+      Force the browser to register
+      the starting position before moving.
+    */
+
+    nextImage.offsetWidth;
+
+    /*
+      Move current image out.
+    */
+
+    if (direction === "right") {
+
+      current.style.transform = "translateX(-100%)";
+      nextImage.style.transform = "translateX(0)";
+
+    } else {
+
+      current.style.transform = "translateX(100%)";
+      nextImage.style.transform = "translateX(0)";
+
+    }
+
+    setTimeout(() => {
+
+      current.classList.remove("active");
+
+      current.style.transform = "";
+
+      nextImage.style.transform = "";
+
+      currentImage = newIndex;
+
+      isAnimating = false;
+
+    }, 450);
   }
 
-  previous.addEventListener("click", (event) => {
-    event.stopPropagation();
-    showImage(currentImage - 1);
-  });
+
+  /*
+    RIGHT ARROW
+    Image slides to the left.
+  */
 
   next.addEventListener("click", (event) => {
+
     event.stopPropagation();
-    showImage(currentImage + 1);
+
+    showImage(
+      currentImage + 1,
+      "right"
+    );
+
   });
 
-  showImage(0);
+
+  /*
+    LEFT ARROW
+    Image slides to the right.
+  */
+
+  previous.addEventListener("click", (event) => {
+
+    event.stopPropagation();
+
+    showImage(
+      currentImage - 1,
+      "left"
+    );
+
+  });
+
+
+  /*
+    Start with the first image.
+  */
+
+  images.forEach((image, index) => {
+
+    image.classList.remove("active");
+
+    image.style.transform =
+      index === 0
+        ? "translateX(0)"
+        : "translateX(100%)";
+
+  });
+
+  images[0].classList.add("active");
 
 });
