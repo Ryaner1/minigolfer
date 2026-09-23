@@ -109,8 +109,73 @@ document.querySelectorAll(".quote-btn").forEach((btn) => {
 // ---------------------------------------------------------
 // Contact form
 // ---------------------------------------------------------
-// Formspree handles the form submission.
-// No JavaScript is needed here.
+// Submit through Formspree in the background so the visitor
+// stays on the website instead of being sent to formspree.io.
+// ---------------------------------------------------------
+
+const quoteForm = document.getElementById("quoteForm");
+const quoteFormSuccess = document.getElementById("quoteFormSuccess");
+const quoteFormError = document.getElementById("quoteFormError");
+
+if (quoteForm) {
+  quoteForm.addEventListener("submit", async (event) => {
+    event.preventDefault();
+
+    if (quoteFormSuccess) {
+      quoteFormSuccess.style.display = "none";
+    }
+
+    if (quoteFormError) {
+      quoteFormError.style.display = "none";
+    }
+
+    const submitButton = quoteForm.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton
+      ? submitButton.textContent
+      : "";
+
+    if (submitButton) {
+      submitButton.disabled = true;
+      submitButton.textContent = "Sending...";
+    }
+
+    try {
+      const response = await fetch(quoteForm.action, {
+        method: "POST",
+        body: new FormData(quoteForm),
+        headers: {
+          Accept: "application/json"
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error("Form submission failed");
+      }
+
+      quoteForm.reset();
+
+      if (quoteFormSuccess) {
+        quoteFormSuccess.style.display = "block";
+
+        setTimeout(() => {
+          quoteFormSuccess.style.display = "none";
+        }, 5000);
+      }
+
+    } catch (error) {
+      console.error("Formspree submission error:", error);
+
+      if (quoteFormError) {
+        quoteFormError.style.display = "block";
+      }
+    } finally {
+      if (submitButton) {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+      }
+    }
+  });
+}
 
 
 // ---------------------------------------------------------
