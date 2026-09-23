@@ -1349,6 +1349,6 @@ html::-webkit-scrollbar {
 
 @media (max-width: 700px) {
   .completed-work-page .site-footer {
-    display: none;
+    display: none !important;
   }
 }
