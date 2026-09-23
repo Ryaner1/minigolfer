@@ -1344,3 +1344,11 @@ html::-webkit-scrollbar {
     order: 2;
   }
 }
+
+/* ---------- completed work mobile footer ---------- */
+
+@media (max-width: 700px) {
+  .completed-work-page .site-footer {
+    display: none;
+  }
+}
