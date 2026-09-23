@@ -157,9 +157,6 @@ if (quoteForm) {
       if (quoteFormSuccess) {
         quoteFormSuccess.style.display = "block";
 
-        setTimeout(() => {
-          quoteFormSuccess.style.display = "none";
-        }, 5000);
       }
 
     } catch (error) {
