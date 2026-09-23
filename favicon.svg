@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <clipPath id="crop">
+      <rect width="64" height="64" rx="12"/>
+    </clipPath>
+  </defs>
+  <g clip-path="url(#crop)">
+    <image href="images/logo.png" x="0" y="0" width="190.9" height="64" preserveAspectRatio="none"/>
+  </g>
+</svg>
