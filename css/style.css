@@ -870,7 +870,7 @@ html::-webkit-scrollbar {
   bottom: 8px;
   left: 9px;
   width: 6px;
-  background: #cbd1cb;
+  background: rgba(203, 209, 203, 0.4);
   border-radius: 10px;
 }
 .golf-ball {
