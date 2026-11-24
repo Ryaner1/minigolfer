@@ -1,29 +1,78 @@
 const quoteForm = document.querySelector("#quoteForm");
 const courseSelect = document.querySelector("#courseSelect");
+const systems = [...document.querySelectorAll(".system")];
+const courseLinks = [...document.querySelectorAll("[data-course]")];
 
-for (const course of document.querySelectorAll(".course-row")) {
-  const drawing = course.querySelector(".drawing-image");
-  const image = drawing.querySelector("img");
-  const viewButtons = course.querySelectorAll("[data-view]");
-  const name = course.querySelector("h3").textContent;
-  for (const button of viewButtons) {
-    button.addEventListener("click", () => {
-      const view = button.dataset.view;
-      const url = "images/sheets/" + course.id + "-" + view + ".png";
-      drawing.href = url;
-      image.src = url;
-      image.alt = name + ", all 18 holes in " + (view === "3d" ? "3D" : "plan view");
-      for (const item of viewButtons) item.setAttribute("aria-pressed", String(item === button));
+function showSystem(id) {
+  const selected = systems.find(system => system.id === id);
+  if (!selected) return;
+  for (const system of systems) system.hidden = system !== selected;
+  for (const link of courseLinks) {
+    link.setAttribute("aria-current", String(link.dataset.course === id));
+  }
+}
+
+if (systems.length) {
+  showSystem(systems.some(s => "#" + s.id === location.hash) ? location.hash.slice(1) : systems[0].id);
+  for (const link of courseLinks) {
+    link.addEventListener("click", event => {
+      event.preventDefault();
+      showSystem(link.dataset.course);
+      history.pushState(null, "", link.hash);
+    });
+  }
+  window.addEventListener("hashchange", () => showSystem(location.hash.slice(1)));
+}
+
+for (const system of systems) {
+  const media = system.querySelector(".media-stage");
+  const image = system.querySelector(".media-image");
+  const open = system.querySelector(".media-open");
+  const caption = system.querySelector(".media-caption");
+  const picker = system.querySelector(".hole-picker");
+  const select = system.querySelector(".hole-select");
+  const views = system.querySelectorAll("[data-view]");
+  const name = system.querySelector("h3").textContent;
+
+  function displayImage(source, description) {
+    image.src = source;
+    image.alt = description;
+    open.href = source;
+    open.setAttribute("aria-label", "Enlarge: " + description);
+    caption.textContent = description;
+  }
+
+  function showHole() {
+    const option = select.selectedOptions[0];
+    displayImage(option.dataset.image, name + " · Hole " + option.textContent);
+  }
+
+  select.addEventListener("change", showHole);
+  for (const [selector, step] of [[".hole-prev", -1], [".hole-next", 1]]) {
+    system.querySelector(selector).addEventListener("click", () => {
+      select.selectedIndex = (select.selectedIndex + step + select.length) % select.length;
+      showHole();
     });
   }
 
-  const packages = course.querySelector(".packages");
+  for (const button of views) {
+    button.addEventListener("click", () => {
+      const view = button.dataset.view;
+      for (const item of views) item.setAttribute("aria-pressed", String(button === item));
+      media.classList.toggle("is-drawing", view === "3d" || view === "plans");
+      media.classList.toggle("is-hole", view === "holes");
+      picker.hidden = view !== "holes";
+      if (view === "holes") showHole();
+      else displayImage(button.dataset.image, view === "installation" ? caption.dataset.installation :
+        name + " · " + (view === "3d" ? "3D" : "Plan") + " view of all 18 holes");
+    });
+  }
+  const packages = system.querySelector(".packages");
   packages.addEventListener("change", () => {
-    course.querySelector(".price").textContent = packages.querySelector(":checked").dataset.price;
+    system.querySelector(".price").textContent = packages.querySelector(":checked").dataset.price;
   });
-  course.querySelector(".quote-link").addEventListener("click", () => {
-    const holes = packages.querySelector(":checked").value;
-    courseSelect.value = name + " — " + holes + " holes";
+  system.querySelector(".choose-set").addEventListener("click", () => {
+    courseSelect.value = name + " — " + packages.querySelector(":checked").value + " holes";
   });
 }
 
