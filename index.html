@@ -1,604 +1,82 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MiniGolf — Mini Wood & Wood Park Course Systems</title>
-  <meta name="description" content="MiniGolf sells two modular adventure golf systems, Mini Wood and Wood Park. View the full course layouts and get a quote.">
-
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#091e1a">
+  <meta name="description" content="Compare Mini Wood and Wood Park modular minigolf courses. Explore every hole, choose a set and request a quote.">
+  <title>Modular wooden minigolf courses | MiniGolf</title>
+  <link rel="icon" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,700;0,800;0,900;1,800&family=DM+Sans:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="css/redesign.css">
+  <script src="js/redesign.js" defer></script>
 </head>
-
-<body>
-  <!-- MINI GOLF SCROLL TRACK -->
-<div class="golf-scrollbar" aria-hidden="true">
-  <div class="golf-scroll-track">
-    <div class="golf-ball">
-      <span></span>
+<body id="top">
+<a class="skip" href="#main">Skip to content</a>
+<header class="mast"><div class="frame mast-inner"><a class="brand" href="index.html" aria-label="MiniGolf home"><span class="symbol" aria-hidden="true"><i></i><i></i><i></i></span><b>MiniGolf</b></a><nav aria-label="Main navigation"><a href="#courses">Course systems</a><a href="Completed-work.html">Projects</a></nav><a class="button mast-quote" href="#contact">Get a quote <span aria-hidden="true" class="arrow">↗</span></a></div></header>
+<main id="main">
+<section class="hero" aria-labelledby="hero-title"><picture><source media="(max-width:650px)" srcset="assets/green-mobile.webp"><img class="hero-image" src="assets/green-wide.webp" fetchpriority="high" alt="Studio concept of a sculpted plywood obstacle on a minigolf green"></picture>
+<div class="frame hero-inner"><div class="hero-copy"><h1 id="hero-title">Make room<br>for <em>play.</em></h1><p class="lead">Wooden courses for resorts, pop-ups and the places you least expect to play.</p><div class="hero-actions"><a class="button primary" href="#courses">Explore courses <span aria-hidden="true">↓</span></a></div></div></div></section>
+<section class="collection" id="courses" aria-labelledby="course-heading">
+  <div class="frame">
+    <div class="compare-head"><h2 id="course-heading">Find your <em>course.</em></h2><fieldset class="compare-sizes"><legend>Compare set sizes</legend><div><label><input type="radio" name="compare-size" value="9" checked><span>9 holes</span></label><label><input type="radio" name="compare-size" value="12"><span>12 holes</span></label><label><input type="radio" name="compare-size" value="18"><span>18 holes</span></label></div></fieldset></div>
+    <div class="compare-grid">
+      <article class="course-card" aria-labelledby="card-mini-wood">
+        <a class="cover-link" href="#mini-wood" data-course="mini-wood" aria-label="Explore Mini Wood">
+          <img src="images/completed-work/project1/project1_2.PNG" alt="Compact wooden lanes on the Viking XPRS ferry" width="900" height="510" loading="lazy" decoding="async">
+          <h3 id="card-mini-wood">Mini Wood</h3>
+        </a>
+        <div class="card-body">
+          <p>Compact lanes for indoor spaces and pop-up events.</p>
+          <div class="card-footer">
+            <div class="card-offer"><span class="card-set">9-hole set</span><strong class="card-price">€10,500</strong></div>
+            <a class="details-link" href="#mini-wood" data-course="mini-wood" aria-label="View Mini Wood details">View course <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
+      <article class="course-card" aria-labelledby="card-wood-park">
+        <a class="cover-link" href="#wood-park" data-course="wood-park" aria-label="Explore Wood Park">
+          <img src="images/completed-work/project3/project3_2.PNG" alt="Outdoor Wood Park lane at Tykkimäki Resort" width="900" height="510" loading="lazy" decoding="async">
+          <h3 id="card-wood-park">Wood Park</h3>
+        </a>
+        <div class="card-body">
+          <p>Village landmarks for resorts and outdoor destinations.</p>
+          <div class="card-footer">
+            <div class="card-offer"><span class="card-set">9-hole set</span><strong class="card-price">€15,500</strong></div>
+            <a class="details-link" href="#wood-park" data-course="wood-park" aria-label="View Wood Park details">View course <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </article>
     </div>
-  </div>
+    <div class="detail-region">
+<article class="system" id="mini-wood" aria-label="Mini Wood" tabindex="-1">
+<div class="detail-top"><div class="plan-heading">
+  <h3>Mini Wood</h3>
+  <button type="button" class="plan-toggle" aria-controls="mini-wood-drawing" hidden>3D view</button>
+</div><a class="back-to-courses" href="#courses">↑ Back to courses</a></div>
+<div class="course-media">
+  <a id="mini-wood-drawing" class="zoom media-open course-plan" data-render="images/sheets/mini-wood-3d.png" href="images/sheets/mini-wood-plans.png" aria-label="Enlarge the complete 18-hole Mini Wood plan">
+    <img src="images/sheets/mini-wood-plans.png" alt="Mini Wood course plan showing all 18 holes" loading="lazy">
+  </a>
 </div>
-
-<svg
-  width="0"
-  height="0"
-  style="position:absolute;overflow:hidden"
-  aria-hidden="true"
->
-  <defs>
-
-    <symbol id="course-tree-scene" viewBox="0 0 240 160">
-
-      <!-- Soft ground -->
-      <path
-        d="M0 132
-           C38 125 63 128 91 138
-           C124 149 160 151 190 143
-           C211 138 226 132 240 127
-           L240 160
-           L0 160 Z"
-        fill="#8FAF91"
-      />
-
-      <!-- Large tree -->
-      <g transform="translate(22 20)">
-        <!-- trunk -->
-        <rect
-          x="23"
-          y="62"
-          width="9"
-          height="48"
-          rx="3"
-          fill="#687E68"
-        />
-
-        <!-- crown -->
-        <circle cx="28" cy="52" r="25" fill="#789779"/>
-        <circle cx="13" cy="62" r="18" fill="#789779"/>
-        <circle cx="43" cy="62" r="18" fill="#789779"/>
-        <circle cx="28" cy="35" r="17" fill="#789779"/>
-        <circle cx="28" cy="65" r="18" fill="#789779"/>
-      </g>
-
-      <!-- Medium tree -->
-      <g transform="translate(91 55) scale(.72)">
-        <rect
-          x="23"
-          y="62"
-          width="9"
-          height="48"
-          rx="3"
-          fill="#687E68"
-        />
-
-        <circle cx="28" cy="52" r="25" fill="#86A486"/>
-        <circle cx="13" cy="62" r="18" fill="#86A486"/>
-        <circle cx="43" cy="62" r="18" fill="#86A486"/>
-        <circle cx="28" cy="35" r="17" fill="#86A486"/>
-        <circle cx="28" cy="65" r="18" fill="#86A486"/>
-      </g>
-
-      <!-- Small tree -->
-      <g transform="translate(138 82) scale(.5)">
-        <rect
-          x="23"
-          y="62"
-          width="9"
-          height="48"
-          rx="3"
-          fill="#687E68"
-        />
-
-        <circle cx="28" cy="52" r="25" fill="#8DA98D"/>
-        <circle cx="13" cy="62" r="18" fill="#8DA98D"/>
-        <circle cx="43" cy="62" r="18" fill="#8DA98D"/>
-        <circle cx="28" cy="35" r="17" fill="#8DA98D"/>
-        <circle cx="28" cy="65" r="18" fill="#8DA98D"/>
-      </g>
-
-    </symbol>
-
-  </defs>
-</svg>
-  <!-- ============ HEADER ============ -->
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <nav class="nav-side nav-left" aria-label="Primary">
-        <a href="#mini-wood">Mini Wood</a>
-        <a href="#wood-park">Wood Park</a>
-        <a href="Completed-work.html">Completed work</a>
-      </nav>
-
-      <a href="#top" class="logo">
-        <img src="images/logo.png" alt="MiniGolf" class="logo-img">
-      </a>
-
-      <nav class="nav-side nav-right" aria-label="Secondary">
-        <a href="#contact">Contact us</a>
-      </nav>
+<div class="system-info"><p class="label">Compact course</p><p class="system-description">A compact wooden lane, a single obstacle and a different challenge at every tee. Choose from 18 graphic hole designs.</p><div class="best-for"><span>Best for</span><b>Indoor venues · Pop-up events</b></div>
+<fieldset class="packages"><legend>Choose your set</legend><label><input type="radio" name="mini-wood-set" value="9" data-price="€10,500" checked><span>9 holes</span></label><label><input type="radio" name="mini-wood-set" value="12" data-price="€12,500"><span>12 holes</span></label><label><input type="radio" name="mini-wood-set" value="18" data-price="€15,500"><span>18 holes</span></label></fieldset><div class="buy-row"><strong class="price" aria-live="polite">€10,500</strong><a class="button ink choose-set" href="#contact" data-system="Mini Wood">Enquire <span aria-hidden="true" class="arrow">↗</span></a></div>
+<a class="course-projects" href="Completed-work.html?course=mini-wood">See our Mini Wood projects <span aria-hidden="true">↗</span></a></div></article><article class="system" id="wood-park" aria-label="Wood Park" tabindex="-1">
+<div class="detail-top"><h3>Wood Park</h3><a class="back-to-courses" href="#courses">↑ Back to courses</a></div>
+<div class="course-media"><div class="media-stage"><a class="zoom media-open" href="images/completed-work/project3/project3.PNG"><img class="media-image" src="images/completed-work/project3/project3.PNG" alt="Tykkimäki Resort · Kouvola minigolf course" loading="lazy"><span class="zoom-glyph" aria-hidden="true">⤢</span></a><div class="hole-picker" hidden><button type="button" class="hole-prev" aria-label="Previous hole">←</button><label><span class="sr">Choose a hole</span><select class="hole-select"><option value="0" data-image="images/holes/wp-saloon.png">01 / Saloon</option><option value="1" data-image="images/holes/wp-turn-3m.png">02 / 3m Turn</option><option value="2" data-image="images/holes/wp-fan.png">03 / Fan</option><option value="3" data-image="images/holes/wp-lantern.png">04 / Lantern</option><option value="4" data-image="images/holes/wp-train-station.png">05 / Train Station</option><option value="5" data-image="images/holes/wp-hill.png">06 / Hill</option><option value="6" data-image="images/holes/wp-castle.png">07 / Castle</option><option value="7" data-image="images/holes/wp-mr-t.png">08 / Mr T</option><option value="8" data-image="images/holes/wp-hotel.png">09 / Hotel</option><option value="9" data-image="images/holes/wp-bird-house.png">10 / Bird House</option><option value="10" data-image="images/holes/wp-straight-3m.png">11 / 3m Straight</option><option value="11" data-image="images/holes/wp-church.png">12 / Church</option><option value="12" data-image="images/holes/wp-z-turn.png">13 / Z-Turn</option><option value="13" data-image="images/holes/wp-zic-zac.png">14 / Zic-Zac</option><option value="14" data-image="images/holes/wp-vulcan2.png">15 / Vulcan</option><option value="15" data-image="images/holes/wp-360.png">16 / 360</option><option value="16" data-image="images/holes/wp-bridge.png">17 / Bridge</option><option value="17" data-image="images/holes/wp-well.png">18 / Well</option></select></label><button type="button" class="hole-next" aria-label="Next hole">→</button></div></div>
+<div class="view-bar" role="group" aria-label="Wood Park views"><button data-view="installation" data-image="images/completed-work/project3/project3.PNG" type="button" aria-pressed="true">Installation</button><button data-view="holes" data-image="images/holes/wp-saloon.png" type="button" aria-pressed="false">Holes</button><button data-view="plans" data-image="images/sheets/wood-park-plans.png" type="button" aria-pressed="false">Plan</button><button data-view="3d" data-image="images/sheets/wood-park-3d.png" type="button" aria-pressed="false">3D</button></div><p class="media-caption" data-installation="Tykkimäki Resort · Kouvola">Tykkimäki Resort · Kouvola</p></div>
+<div class="system-info"><p class="label">Themed course</p><p class="system-description">A village in miniature. Putt through a saloon, past a castle and over a bridge on a course built around recognisable landmarks.</p><div class="best-for"><span>Best for</span><b>Resorts · Leisure destinations</b></div>
+<fieldset class="packages"><legend>Choose your set</legend><label><input type="radio" name="wood-park-set" value="9" data-price="€15,500" checked><span>9 holes</span></label><label><input type="radio" name="wood-park-set" value="12" data-price="€20,500"><span>12 holes</span></label><label><input type="radio" name="wood-park-set" value="18" data-price="€25,500"><span>18 holes</span></label></fieldset><div class="buy-row"><strong class="price" aria-live="polite">€15,500</strong><a class="button ink choose-set" href="#contact" data-system="Wood Park">Enquire <span aria-hidden="true" class="arrow">↗</span></a></div></div></article>
     </div>
-  </header>
-
-  <main id="top">
-
-    <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="wrap hero-inner">
-        <p class="eyebrow-line">Modular Adventure Golf</p>
-        <h1>Two course systems. Eighteen holes each. See the full layout before you order.</h1>
-        <p class="hero-sub">
-          Mini Wood and Wood Park are complete 18-hole modular courses.
-          Every module is drawn to scale — browse the plan and 3D views below,
-          then get a quote for either system.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#mini-wood" class="btn btn-primary">View Mini Wood</a>
-          <a href="#wood-park" class="btn btn-line">View Wood Park</a>
-        </div>
-      </div>
-    </section>
-
-    <!-- ============ MINI WOOD ============ -->
-<section class="collection" id="mini-wood">
-
-  <!-- MINI WOOD CORNER TREES -->
-  <div class="course-trees" aria-hidden="true">
-
-    <div class="course-tree bottom-left">
-      <svg viewBox="0 0 240 160">
-        <use href="#course-tree-scene"></use>
-      </svg>
-    </div>
-
-    <div class="course-tree bottom-right">
-      <svg viewBox="0 0 240 160">
-        <use href="#course-tree-scene"></use>
-      </svg>
-    </div>
-
   </div>
-
-  <div class="wrap collection-inner">
-
-    <div class="collection-info">
-
-      <div class="course-heading">
-        <p class="eyebrow-line">Course 01</p>
-        <h2>Mini Wood</h2>
-
-        <p>
-          Eighteen compact holes, each built around a single graphic obstacle.
-          Small footprints suit indoor courses, pop-up events and space-limited sites.<br>
-          *You can choose any of the 18 holes to create a 9-hole or 12-hole set.
-        </p>
-      </div>
-
-      <ul class="hole-list">
-        <li>1. Start</li>
-        <li>2. Scope</li>
-        <li>3. Gate</li>
-        <li>4. Return</li>
-        <li>5. Vulcan</li>
-        <li>6. Threats</li>
-        <li>7. Double Hole</li>
-        <li>8. Ramp</li>
-        <li>9. Jump</li>
-        <li>10. Right</li>
-        <li>11. Three Goals</li>
-        <li>12. Jump II</li>
-        <li>13. Three Jumpers</li>
-        <li>14. Long Ahead</li>
-        <li>15. A Fall Under</li>
-        <li>16. Two Side</li>
-        <li>17. Roller</li>
-        <li>18. Eight</li>
-      </ul>
-
-      <div class="tier-grid">
-
-        <div class="tier-card">
-          <span class="tier-label">9-hole set</span>
-          <span class="tier-price" id="price-mini-wood-9">&euro;10,500</span>
-          <button class="btn btn-primary quote-btn" data-value="Mini Wood — 9 holes">
-            Contact us
-          </button>
-        </div>
-
-        <div class="tier-card">
-          <span class="tier-label">12-hole set</span>
-          <span class="tier-price" id="price-mini-wood-12">&euro;12,500</span>
-          <button class="btn btn-primary quote-btn" data-value="Mini Wood — 12 holes">
-            Contact us
-          </button>
-        </div>
-
-        <div class="tier-card">
-          <span class="tier-label">18-hole set</span>
-          <span class="tier-price" id="price-mini-wood-18">&euro;15,500</span>
-          <button class="btn btn-primary quote-btn" data-value="Mini Wood — 18 holes">
-            Contact us
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="collection-viewer">
-
-      <div class="viewer-tabs">
-        <button class="view-tab active" data-target="mw-plans">
-          Plan view
-        </button>
-
-        <button class="view-tab" data-target="mw-3d">
-          3D view
-        </button>
-      </div>
-
-      <div class="viewer-frame">
-        <img
-          id="mw-plans"
-          class="viewer-img active"
-          src="images/sheets/mini-wood-plans.png"
-          alt="Mini Wood plan view — all 18 holes"
-        >
-
-        <img
-          id="mw-3d"
-          class="viewer-img"
-          src="images/sheets/mini-wood-3d.png"
-          alt="Mini Wood 3D view — all 18 holes"
-        >
-      </div>
-
-      <p class="viewer-hint">
-        Click the image to zoom in
-      </p>
-
-    </div>
-
-    <!-- MINI WOOD INFORMATION BOXES -->
-    <div class="course-features">
-
-      <div class="feature-item">
-        <span class="feature-number">01</span>
-        <span class="feature-title">At a glance</span>
-        <span class="feature-main">Compact footprint</span>
-        <span class="feature-text">
-          Designed for indoor courses, pop-up events and space-limited sites.
-        </span>
-      </div>
-
-      <div class="feature-item">
-        <span class="feature-number">02</span>
-        <span class="feature-title">Holes</span>
-        <span class="feature-main">9 / 12 / 18 options</span>
-        <span class="feature-text">
-          Choose the number of holes that fits your available space.
-        </span>
-      </div>
-
-      <div class="feature-item">
-        <span class="feature-number">03</span>
-        <span class="feature-title">Course style</span>
-        <span class="feature-main">Graphic obstacles</span>
-        <span class="feature-text">
-          Each hole is built around a single graphic obstacle.
-        </span>
-      </div>
-
-      <div class="feature-item">
-        <span class="feature-number">04</span>
-        <span class="feature-title">Best for</span>
-        <span class="feature-main">Indoor &amp; pop-up sites</span>
-        <span class="feature-text">
-          A compact option where available space is limited.
-        </span>
-      </div>
-
-    </div>
-
-  </div>
-
 </section>
-
-    <!-- ============ WOOD PARK ============ -->
-<section class="collection alt" id="wood-park">
-
-  <!-- WOOD PARK CORNER TREES -->
-  <div class="course-trees" aria-hidden="true">
-
-    <div class="course-tree bottom-left">
-      <svg viewBox="0 0 240 160">
-        <use href="#course-tree-scene"></use>
-      </svg>
-    </div>
-
-    <div class="course-tree bottom-right">
-      <svg viewBox="0 0 240 160">
-        <use href="#course-tree-scene"></use>
-      </svg>
-    </div>
-
-  </div>
-
-  <div class="wrap collection-inner reverse">
-
-    <div class="collection-viewer">
-
-      <div class="viewer-tabs">
-        <button class="view-tab active" data-target="wp-plans">
-          Plan view
-        </button>
-
-        <button class="view-tab" data-target="wp-3d">
-          3D view
-        </button>
-      </div>
-
-      <div class="viewer-frame">
-        <img
-          id="wp-plans"
-          class="viewer-img active"
-          src="images/sheets/wood-park-plans.png"
-          alt="Wood Park plan view — all 18 holes"
-        >
-
-        <img
-          id="wp-3d"
-          class="viewer-img"
-          src="images/sheets/wood-park-3d.png"
-          alt="Wood Park 3D view — all 18 holes"
-        >
-      </div>
-
-      <p class="viewer-hint">
-        Click the image to zoom in
-      </p>
-
-    </div>
-
-    <div class="collection-info">
-
-      <div class="course-heading">
-        <p class="eyebrow-line">Course 02</p>
-        <h2>Wood Park</h2>
-
-        <p>
-          Eighteen larger, themed holes with landmark props — a saloon,
-          a castle, a church, a train station — built around a village story.<br>
-          *You can choose any of the 18 holes to create a 9-hole or 12-hole set.
-        </p>
-      </div>
-
-      <ul class="hole-list">
-        <li>1. Saloon</li>
-        <li>2. 3m Turn</li>
-        <li>3. Fan</li>
-        <li>4. Lantern</li>
-        <li>5. Train Station</li>
-        <li>6. Hill</li>
-        <li>7. Castle</li>
-        <li>8. Mr T</li>
-        <li>9. Hotel</li>
-        <li>10. Bird House</li>
-        <li>11. 3m Straight</li>
-        <li>12. Church</li>
-        <li>13. Z-Turn</li>
-        <li>14. Zic-Zac</li>
-        <li>15. Vulcan</li>
-        <li>16. 360</li>
-        <li>17. Bridge</li>
-        <li>18. Well</li>
-      </ul>
-
-      <div class="tier-grid">
-
-        <div class="tier-card">
-          <span class="tier-label">9-hole set</span>
-          <span class="tier-price" id="price-wood-park-9">&euro;15,500</span>
-          <button class="btn btn-primary quote-btn" data-value="Wood Park — 9 holes">
-            Contact us
-          </button>
-        </div>
-
-        <div class="tier-card">
-          <span class="tier-label">12-hole set</span>
-          <span class="tier-price" id="price-wood-park-12">&euro;20,500</span>
-          <button class="btn btn-primary quote-btn" data-value="Wood Park — 12 holes">
-            Contact us
-          </button>
-        </div>
-
-        <div class="tier-card">
-          <span class="tier-label">18-hole set</span>
-          <span class="tier-price" id="price-wood-park-18">&euro;25,500</span>
-          <button class="btn btn-primary quote-btn" data-value="Wood Park — 18 holes">
-            Contact us
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-
-    <!-- WOOD PARK INFORMATION BOXES -->
-    <div class="course-features">
-
-      <div class="feature-item">
-        <span class="feature-number">01</span>
-        <span class="feature-title">At a glance</span>
-        <span class="feature-main">Themed village course</span>
-        <span class="feature-text">
-          A larger course built around a connected village story.
-        </span>
-      </div>
-
-      <div class="feature-item">
-        <span class="feature-number">02</span>
-        <span class="feature-title">Holes</span>
-        <span class="feature-main">9 / 12 / 18 options</span>
-        <span class="feature-text">
-          Choose the number of holes that fits your available space.
-        </span>
-      </div>
-
-      <div class="feature-item">
-        <span class="feature-number">03</span>
-        <span class="feature-title">Course style</span>
-        <span class="feature-main">Landmark props</span>
-        <span class="feature-text">
-          Saloon, castle, church and train station landmarks create the course identity.
-        </span>
-      </div>
-
-      <div class="feature-item">
-        <span class="feature-number">04</span>
-        <span class="feature-title">Best for</span>
-        <span class="feature-main">Themed destinations</span>
-        <span class="feature-text">
-          A strong fit for locations where the course can become part of the visitor experience.
-        </span>
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
-    <!-- ============ CONTACT ============ -->
-    <section class="contact" id="contact">
-      <div class="wrap contact-inner">
-
-        <div>
-          <p class="eyebrow-line">Get in touch</p>
-          <h2>Request a quote</h2>
-
-          <p>
-            Tell us which system you're interested in and a little about your site.
-            Send us your enquiry and we'll get back to you.
-          </p>
-        </div>
-
-        <form
-          id="quoteForm"
-          class="quote-form"
-          action="https://formspree.io/f/mqpaayvl"
-          method="POST"
-        >
-
-          <label>
-            Name
-            <input type="text" name="name" required>
-          </label>
-
-          <label>
-            Email
-            <input type="email" name="email" required>
-          </label>
-
-          <label>
-            Interested in
-            <select name="course" id="courseSelect" required>
-              <option value="" disabled selected>Select an option</option>
-              <option value="Mini Wood — 9 holes">Mini Wood — 9 holes</option>
-              <option value="Mini Wood — 12 holes">Mini Wood — 12 holes</option>
-              <option value="Mini Wood — 18 holes">Mini Wood — 18 holes</option>
-              <option value="Wood Park — 9 holes">Wood Park — 9 holes</option>
-              <option value="Wood Park — 12 holes">Wood Park — 12 holes</option>
-              <option value="Wood Park — 18 holes">Wood Park — 18 holes</option>
-            </select>
-          </label>
-
-          <label>
-            Message
-            <textarea
-              name="message"
-              rows="4"
-              placeholder="Tell us about your site and timeline."
-            ></textarea>
-          </label>
-
-          <input
-            type="hidden"
-            name="subject"
-            value="New MiniGolf enquiry"
-          >
-
-          <button type="submit" class="btn btn-primary">
-            Send a message
-          </button>
-
-          <div
-            id="quoteFormSuccess"
-            role="status"
-            aria-live="polite"
-            style="display:none; margin-top:16px; padding:12px 16px; border:1px solid #8fbd91; background:#eef8ef; color:#2f6b35; border-radius:8px; font-weight:600;"
-          >
-            ✓ Message sent successfully!
-          </div>
-
-          <div
-            id="quoteFormError"
-            role="alert"
-            aria-live="assertive"
-            style="display:none; margin-top:16px; padding:12px 16px; border:1px solid #d99; background:#fff1f1; color:#9b3030; border-radius:8px; font-weight:600;"
-          >
-            Sorry, something went wrong. Please try again.
-          </div>
-
-        </form>
-
-      </div>
-    </section>
-
-  </main>
-
-  <!-- ============ FOOTER ============ -->
-  <footer class="site-footer">
-    <div class="wrap footer-inner">
-
-      <div>
-        <span class="logo">MiniGolf</span>
-        <p>
-          Modular adventure golf course systems — Mini Wood &amp; Wood Park.
-        </p>
-      </div>
-
-      <div class="footer-cols">
-        <a href="#mini-wood">Mini Wood</a>
-        <a href="#wood-park">Wood Park</a>
-        <a href="#contact">Contact us</a>
-      </div>
-
-    </div>
-
-    <div class="wrap footer-bottom">
-      <p>&copy; <span id="year"></span> MiniGolf.</p>
-    </div>
-  </footer>
-
-  <!-- ============ IMAGE LIGHTBOX ============ -->
-  <div
-    class="lightbox"
-    id="lightbox"
-    role="dialog"
-    aria-hidden="true"
-    aria-label="Enlarged view"
-  >
-    <button id="lightboxClose" aria-label="Close">&times;</button>
-    <img id="lightboxImg" src="" alt="">
-  </div>
-
-  <script src="js/script.js"></script>
-
-</body>
-</html>
+<section class="locations"><div class="frame"><div class="section-heading"><div><p class="label section-label">Selected installations</p><h2>In the <em>field.</em></h2></div><a class="text-link" href="Completed-work.html">All four projects <span aria-hidden="true" class="arrow">↗</span></a></div><div class="project-grid"><a class="installation" href="Completed-work.html#project-3"><img loading="lazy" src="images/completed-work/project3/project3.PNG" alt="Tykkimäki Resort minigolf installation"><div><p>Kouvola, Finland <i>/</i> 12 holes</p><h3>Tykkimäki Resort</h3></div><span aria-hidden="true">↗</span></a><a class="installation" href="Completed-work.html#project-1"><img loading="lazy" src="images/completed-work/project1/project1.PNG" alt="Viking XPRS minigolf installation"><div><p>Helsinki – Tallinn <i>/</i> 9 holes</p><h3>Viking XPRS</h3></div><span aria-hidden="true">↗</span></a></div></div></section>
+<section class="contact" id="contact"><div class="frame contact-grid"><div><p class="overline dot">Project enquiries</p><h2>Your next<br><em>green.</em></h2><p>Tell us about your location and the set you have in mind. We’ll get back to you about your project.</p></div>
+    <form action="https://formspree.io/f/mqpaayvl" method="post" id="quoteForm"><div class="field-pair"><label>Your name<input name="name" autocomplete="name" required></label><label>Email address<input name="email" type="email" autocomplete="email" required></label></div>
+      <label>Course &amp; set<select id="courseSelect" name="course" required><option value="" disabled selected>Select your set</option><option>Mini Wood — 9 holes</option><option>Mini Wood — 12 holes</option><option>Mini Wood — 18 holes</option><option>Wood Park — 9 holes</option><option>Wood Park — 12 holes</option><option>Wood Park — 18 holes</option><option>I’d like some advice</option></select></label>
+      <label>About your project<textarea name="message" rows="3" placeholder="Location, available space or timeline"></textarea></label>
+      <input type="hidden" name="subject" value="New MiniGolf enquiry"><button class="button primary" type="submit">Send enquiry <span aria-hidden="true" class="arrow">↗</span></button><p class="form-status" role="status"></p>
+    </form></div></section>
+</main><footer><div class="frame foot-inner"><a class="brand" href="index.html" aria-label="MiniGolf home"><span class="symbol" aria-hidden="true"><i></i><i></i><i></i></span><b>MiniGolf</b></a><div><a href="index.html#courses">Courses</a><a href="Completed-work.html">Projects</a><a href="index.html#contact">Contact</a></div><a href="#top">Back to top ↑</a></div></footer>
+<dialog class="zoom-dialog" aria-label="Enlarged image"><div class="zoom-tools"><span class="zoom-caption"></span><button type="button" class="button button-light close-zoom">Close ×</button></div><img class="enlarged" alt=""></dialog>
+</body></html>
