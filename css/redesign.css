@@ -97,3 +97,15 @@ html:has(.redesign){scrollbar-width:auto}
 @media(max-width:460px){.redesign .nav-side{gap:11px}.redesign .nav-side a{font-size:10px}.redesign .nav-left a:last-child{display:none}.redesign .hero h1{font-size:3.65rem}.redesign .hero-actions{gap:20px}.redesign .hero-work{font-size:11px}.redesign .hero-note{font-size:8px;gap:8px}.redesign .tier-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.redesign .tier-card{padding:13px 9px}.redesign .tier-price{font-size:21px}.redesign .tier-card .btn{font-size:10px;padding:8px 4px}.redesign .viewer-frame{aspect-ratio:1}.redesign .quote-form{padding:22px}.redesign .footer-inner{gap:20px}.benefit-strip span:before{margin-right:6px}}
 
 .redesign .header-inner>.logo{text-decoration:none;gap:9px;color:#143f32}.brand-mark{font-size:36px;line-height:1}.brand-name{font-family:var(--font-display);font-size:26px;letter-spacing:-.06em;font-weight:700}.brand-name>span{display:block;font-family:var(--font-body);font-size:7px;letter-spacing:.19em;margin-top:-4px}.redesign .hero-photo{background-position:center;background-size:cover}@media(max-width:460px){.brand-name{font-size:22px}.brand-mark{font-size:29px}}
+
+@media(max-width:700px){
+.redesign .collection{display:block}
+.redesign .collection-inner,.redesign .collection-inner.reverse{display:grid}
+.redesign .collection-info,.redesign .collection-inner.reverse .collection-info{display:block;min-width:0}
+.redesign .course-heading{padding:0;order:initial}
+.redesign .collection-viewer{margin:0;padding:20px;min-width:0}
+.redesign .course-features{width:100%;margin:0;min-width:0;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.redesign .feature-item{min-width:0}
+.redesign .tier-grid{width:100%;margin:0}
+.redesign .hole-list{display:grid}
+}
