@@ -13,9 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Work+Sans:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="css/style.css">
+<meta name="theme-color" content="#123f32">
+<link rel="stylesheet" href="css/redesign.css">
 </head>
 
-<body>
+<body class="redesign">
+<a class="skip-link" href="#courses">Skip to courses</a>
   <!-- MINI GOLF SCROLL TRACK -->
 <div class="golf-scrollbar" aria-hidden="true">
   <div class="golf-scroll-track">
@@ -116,7 +119,7 @@
       </nav>
 
       <a href="#top" class="logo">
-        <img src="images/logo.png" alt="MiniGolf" class="logo-img">
+        <span class="brand-mark" aria-hidden="true">⚑</span><span class="brand-name">MiniGolf<span>MODULAR COURSES</span></span>
       </a>
 
       <nav class="nav-side nav-right" aria-label="Secondary">
@@ -129,21 +132,16 @@
 
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="wrap hero-inner">
-        <p class="eyebrow-line">Modular Adventure Golf</p>
-        <h1>Two course systems. Eighteen holes each. See the full layout before you order.</h1>
-        <p class="hero-sub">
-          Mini Wood and Wood Park are complete 18-hole modular courses.
-          Every module is drawn to scale — browse the plan and 3D views below,
-          then get a quote for either system.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#mini-wood" class="btn btn-primary">View Mini Wood</a>
-          <a href="#wood-park" class="btn btn-line">View Wood Park</a>
-        </div>
-      </div>
-    </section>
+<div class="hero-photo" role="img" aria-label="Modular wooden minigolf course"></div>
+<div class="wrap hero-inner"><p class="eyebrow-line">SMALL FOOTPRINT. BIG PLAY.</p>
+<h1>A little course.<br>A whole lot<br>of <em>possibility.</em></h1>
+<p class="hero-sub">Turn your space into a place to play. Discover two modular minigolf systems, made for memorable moments.</p>
+<div class="hero-actions"><a href="#courses" class="btn btn-primary">Find your course <span aria-hidden="true">↗</span></a><a href="Completed-work.html" class="hero-work">See completed work <span aria-hidden="true">↗</span></a></div>
+<div class="hero-note"><span class="note-dot"></span> MINI WOOD &amp; WOOD PARK <span>9 / 12 / 18 holes</span></div></div>
+<a href="#courses" class="hero-caption"><span>MODULAR BY DESIGN<br><strong>Built around your space.</strong></span><span aria-hidden="true">↓</span></a>
+</section>
+<div class="benefit-strip"><div class="wrap"><span>Two distinct course systems</span><span>9, 12 or 18 holes</span><span>Explore every hole in 3D</span><span>Find the right fit for your site</span></div></div>
+<section class="course-intro wrap" id="courses"><div><p class="eyebrow-line">THE COLLECTION</p><h2>Different characters.<br>Same love of the game.</h2></div><p>From compact, graphic challenges to a playful village adventure. Choose your course, explore the details and make it your own.</p></section>
 
     <!-- ============ MINI WOOD ============ -->
 <section class="collection" id="mini-wood">
@@ -170,7 +168,7 @@
     <div class="collection-info">
 
       <div class="course-heading">
-        <p class="eyebrow-line">Course 01</p>
+        <p class="eyebrow-line">01 / COMPACT &amp; PLAYFUL</p>
         <h2>Mini Wood</h2>
 
         <p>
@@ -180,7 +178,7 @@
         </p>
       </div>
 
-      <ul class="hole-list">
+      <details class="hole-details"><summary>Explore all 18 holes <span aria-hidden="true">+</span></summary><ul class="hole-list">
         <li>1. Start</li>
         <li>2. Scope</li>
         <li>3. Gate</li>
@@ -199,7 +197,7 @@
         <li>16. Two Side</li>
         <li>17. Roller</li>
         <li>18. Eight</li>
-      </ul>
+      </ul></details>
 
       <div class="tier-grid">
 
@@ -234,11 +232,11 @@
     <div class="collection-viewer">
 
       <div class="viewer-tabs">
-        <button class="view-tab active" data-target="mw-plans">
+        <button class="view-tab" data-target="mw-plans">
           Plan view
         </button>
 
-        <button class="view-tab" data-target="mw-3d">
+        <button class="view-tab active" data-target="mw-3d">
           3D view
         </button>
       </div>
@@ -246,14 +244,14 @@
       <div class="viewer-frame">
         <img
           id="mw-plans"
-          class="viewer-img active"
+          class="viewer-img" loading="lazy" tabindex="0" role="button"
           src="images/sheets/mini-wood-plans.png"
           alt="Mini Wood plan view — all 18 holes"
         >
 
         <img
           id="mw-3d"
-          class="viewer-img"
+          class="viewer-img active" loading="lazy" tabindex="0" role="button"
           src="images/sheets/mini-wood-3d.png"
           alt="Mini Wood 3D view — all 18 holes"
         >
@@ -335,11 +333,11 @@
     <div class="collection-viewer">
 
       <div class="viewer-tabs">
-        <button class="view-tab active" data-target="wp-plans">
+        <button class="view-tab" data-target="wp-plans">
           Plan view
         </button>
 
-        <button class="view-tab" data-target="wp-3d">
+        <button class="view-tab active" data-target="wp-3d">
           3D view
         </button>
       </div>
@@ -347,14 +345,14 @@
       <div class="viewer-frame">
         <img
           id="wp-plans"
-          class="viewer-img active"
+          class="viewer-img" loading="lazy" tabindex="0" role="button"
           src="images/sheets/wood-park-plans.png"
           alt="Wood Park plan view — all 18 holes"
         >
 
         <img
           id="wp-3d"
-          class="viewer-img"
+          class="viewer-img active" loading="lazy" tabindex="0" role="button"
           src="images/sheets/wood-park-3d.png"
           alt="Wood Park 3D view — all 18 holes"
         >
@@ -369,7 +367,7 @@
     <div class="collection-info">
 
       <div class="course-heading">
-        <p class="eyebrow-line">Course 02</p>
+        <p class="eyebrow-line">02 / A LITTLE WORLD OF ADVENTURE</p>
         <h2>Wood Park</h2>
 
         <p>
@@ -379,7 +377,7 @@
         </p>
       </div>
 
-      <ul class="hole-list">
+      <details class="hole-details"><summary>Explore all 18 holes <span aria-hidden="true">+</span></summary><ul class="hole-list">
         <li>1. Saloon</li>
         <li>2. 3m Turn</li>
         <li>3. Fan</li>
@@ -398,7 +396,7 @@
         <li>16. 360</li>
         <li>17. Bridge</li>
         <li>18. Well</li>
-      </ul>
+      </ul></details>
 
       <div class="tier-grid">
 
@@ -474,13 +472,14 @@
   </div>
 
 </section>
-    <!-- ============ CONTACT ============ -->
+    <section class="work-preview wrap"><div><p class="eyebrow-line">FROM PLANS TO PLAY</p><h2>See the courses<br>come to life.</h2><p>Take a closer look at completed work and find inspiration for your own space.</p><a class="btn btn-line" href="Completed-work.html">Explore completed work ↗</a></div><a href="Completed-work.html" class="work-image"><img src="images/completed-work/project1/project1.PNG" loading="lazy" alt="Completed modular minigolf project"><span>Explore the gallery ↗</span></a></section>
+<!-- ============ CONTACT ============ -->
     <section class="contact" id="contact">
       <div class="wrap contact-inner">
 
         <div>
           <p class="eyebrow-line">Get in touch</p>
-          <h2>Request a quote</h2>
+          <h2>Let’s make<br>room for play.</h2>
 
           <p>
             Tell us which system you're interested in and a little about your site.
@@ -599,6 +598,7 @@
   </div>
 
   <script src="js/script.js"></script>
+<script src="js/redesign.js"></script>
 
 </body>
 </html>
