@@ -50,8 +50,30 @@ for (const system of systems) {
   packages.addEventListener("change", () => {
     selectSize(packages.querySelector(":checked").value);
   });
-  system.querySelector(".choose-set").addEventListener("click", () => {
-    courseSelect.value = name + " — " + packages.querySelector(":checked").value + " holes";
+  const enquire = system.querySelector(".choose-set");
+  enquire.addEventListener("click", () => {
+    courseSelect.value = enquire.dataset.system + " — " + packages.querySelector(":checked").value + " holes";
+  });
+}
+
+const drawing = document.querySelector("#mini-wood-drawing");
+if (drawing) {
+  const button = document.querySelector(".plan-toggle");
+  const image = drawing.querySelector("img");
+  const plan = drawing.getAttribute("href");
+  const render = drawing.dataset.render;
+  button.hidden = false;
+  button.addEventListener("click", () => {
+    const showRender = drawing.getAttribute("href") === plan;
+    const file = showRender ? render : plan;
+    const description = showRender
+      ? "3D view of all 18 Mini Wood holes"
+      : "Mini Wood course plan showing all 18 holes";
+    image.src = file;
+    image.alt = description;
+    drawing.href = file;
+    drawing.setAttribute("aria-label", "Enlarge: " + description);
+    button.textContent = showRender ? "Plan view" : "3D view";
   });
 }
 
@@ -97,6 +119,18 @@ for (const media of document.querySelectorAll(".system .media-stage")) {
       else displayImage(button.dataset.image, view === "installation" ? caption.dataset.installation :
         name + " · " + (view === "3d" ? "3D" : "Plan") + " view of all 18 holes");
     });
+  }
+}
+
+const archive = document.querySelector(".gallery-page");
+if (archive && new URLSearchParams(location.search).get("course") === "mini-wood") {
+  archive.querySelector("h1").textContent = "Mini Wood projects";
+  document.title = "Mini Wood projects | MiniGolf";
+  archive.querySelector(".gallery-head > p:last-child").hidden = true;
+  archive.querySelector(".project-index").hidden = true;
+  archive.querySelector(".archive-return").hidden = false;
+  for (const project of archive.querySelectorAll(".project-detail")) {
+    project.hidden = project.dataset.system !== "mini-wood";
   }
 }
 
