@@ -65,6 +65,7 @@ h2 { font-size: clamp(52px, 6vw, 94px); }
 .system-description, .project-description > p:not(.overline), .gallery-head > p:last-child, .contact-grid > div > p:last-child { font-size: 15px; line-height: 1.65; color: #4d5a50; }
 .system { display: grid; grid-template-columns: 1.42fr 1fr; gap: clamp(26px, 5vw, 84px); align-items: start; }
 .course-media, .system-info { min-width: 0; }
+.course-plan img { width: 100%; height: auto; }
 .media-stage { position: relative; overflow: hidden; background: #fff; }
 .media-open { display: block; position: relative; cursor: zoom-in; }
 .media-image { width: 100%; aspect-ratio: 1.68; object-fit: cover; }

@@ -46,7 +46,17 @@ if (sizeSelector) {
 }
 
 for (const system of systems) {
-  const media = system.querySelector(".media-stage");
+  const packages = system.querySelector(".packages");
+  packages.addEventListener("change", () => {
+    selectSize(packages.querySelector(":checked").value);
+  });
+  system.querySelector(".choose-set").addEventListener("click", () => {
+    courseSelect.value = name + " — " + packages.querySelector(":checked").value + " holes";
+  });
+}
+
+for (const media of document.querySelectorAll(".system .media-stage")) {
+  const system = media.closest(".system");
   const image = system.querySelector(".media-image");
   const open = system.querySelector(".media-open");
   const caption = system.querySelector(".media-caption");
@@ -88,13 +98,6 @@ for (const system of systems) {
         name + " · " + (view === "3d" ? "3D" : "Plan") + " view of all 18 holes");
     });
   }
-  const packages = system.querySelector(".packages");
-  packages.addEventListener("change", () => {
-    selectSize(packages.querySelector(":checked").value);
-  });
-  system.querySelector(".choose-set").addEventListener("click", () => {
-    courseSelect.value = name + " — " + packages.querySelector(":checked").value + " holes";
-  });
 }
 
 for (const gallery of document.querySelectorAll(".project-gallery")) {
