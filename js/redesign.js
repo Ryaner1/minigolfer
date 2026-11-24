@@ -1,27 +1,48 @@
 const quoteForm = document.querySelector("#quoteForm");
 const courseSelect = document.querySelector("#courseSelect");
 const systems = [...document.querySelectorAll(".system")];
-const courseLinks = [...document.querySelectorAll("[data-course]")];
+const cards = [...document.querySelectorAll(".course-card")];
+const sizeSelector = document.querySelector(".compare-sizes");
 
-function showSystem(id) {
-  const selected = systems.find(system => system.id === id);
-  if (!selected) return;
-  for (const system of systems) system.hidden = system !== selected;
-  for (const link of courseLinks) {
-    link.setAttribute("aria-current", String(link.dataset.course === id));
+function selectSize(size) {
+  if (!sizeSelector) return;
+  sizeSelector.querySelector('input[value="' + size + '"]').checked = true;
+  for (const system of systems) {
+    const choice = system.querySelector('.packages input[value="' + size + '"]');
+    choice.checked = true;
+    system.querySelector(".price").textContent = choice.dataset.price;
+  }
+  for (const card of cards) {
+    const system = document.getElementById(card.querySelector("[data-course]").dataset.course);
+    const price = system.querySelector(".packages input:checked").dataset.price;
+    card.querySelector(".card-set").textContent = size + "-hole set";
+    card.querySelector(".card-price").textContent = price;
   }
 }
 
-if (systems.length) {
-  showSystem(systems.some(s => "#" + s.id === location.hash) ? location.hash.slice(1) : systems[0].id);
-  for (const link of courseLinks) {
+function revealSystem(id, focus = false) {
+  for (const system of systems) {
+    system.hidden = system.id !== id;
+    if (!system.hidden && focus) system.focus({ preventScroll: true });
+  }
+}
+
+if (sizeSelector) {
+  selectSize(sizeSelector.querySelector(":checked").value);
+  sizeSelector.addEventListener("change", event => selectSize(event.target.value));
+  revealSystem(location.hash.slice(1));
+  for (const link of document.querySelectorAll("[data-course]")) {
     link.addEventListener("click", event => {
-      event.preventDefault();
-      showSystem(link.dataset.course);
-      history.pushState(null, "", link.hash);
+      if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+      revealSystem(link.dataset.course, true);
     });
   }
-  window.addEventListener("hashchange", () => showSystem(location.hash.slice(1)));
+  window.addEventListener("hashchange", () => {
+    const target = location.hash.slice(1);
+    revealSystem(target);
+    const active = systems.find(system => system.id === target);
+    if (active) active.scrollIntoView({ block: "start" });
+  });
 }
 
 for (const system of systems) {
@@ -69,7 +90,7 @@ for (const system of systems) {
   }
   const packages = system.querySelector(".packages");
   packages.addEventListener("change", () => {
-    system.querySelector(".price").textContent = packages.querySelector(":checked").dataset.price;
+    selectSize(packages.querySelector(":checked").value);
   });
   system.querySelector(".choose-set").addEventListener("click", () => {
     courseSelect.value = name + " — " + packages.querySelector(":checked").value + " holes";
